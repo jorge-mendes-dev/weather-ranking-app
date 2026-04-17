@@ -1,0 +1,22 @@
+{
+  "name": "weather-ranking-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App to know the weather for some sport activities",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run start:dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.5.3"
+  }
+}
