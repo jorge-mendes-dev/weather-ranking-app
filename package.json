@@ -2,6 +2,7 @@
   "name": "weather-ranking-app",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "npm@10.9.2",
   "description": "App to know the weather for some sport activities",
   "scripts": {
     "build": "turbo run build",

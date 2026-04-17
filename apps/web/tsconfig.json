@@ -1,36 +1,41 @@
 {
-    "extends": "../../tsconfig.base.json",
-    "compilerOptions": {
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "jsx": "preserve",
-        "noEmit": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        "paths": {
-            "@/*": [
-                "./src/*"
-            ],
-            "@weather-app/types": [
-                "../../packages/types/src/index.ts"
-            ]
-        }
-    },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts"
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "noEmit": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@weather-app/types": [
+        "../../packages/types/src/index.ts"
+      ]
+    },
+    "target": "ES2017",
+    "allowJs": true,
+    "strict": false,
+    "incremental": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
