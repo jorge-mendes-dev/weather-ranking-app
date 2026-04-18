@@ -39,13 +39,19 @@ const ACTIVITY_EMOJI: Record<string, string> = {
 };
 
 export default async function Home() {
-  const data = await gqlClient.request<RankingsResponse>(RANKINGS_QUERY, {
-    latitude: DEFAULT_LAT,
-    longitude: DEFAULT_LON,
-  });
-
-  const { rankings } = data;
-  const { conditions } = rankings[0];
+  let rankings: ActivityRanking[] | null = null;
+  let conditions: ActivityRanking["conditions"] | null = null;
+  let fetchError = false;
+  try {
+    const data = await gqlClient.request<RankingsResponse>(RANKINGS_QUERY, {
+      latitude: DEFAULT_LAT,
+      longitude: DEFAULT_LON,
+    });
+    rankings = data.rankings;
+    conditions = rankings[0]?.conditions ?? null;
+  } catch (e) {
+    fetchError = true;
+  }
 
   return (
     <main
@@ -62,87 +68,104 @@ export default async function Home() {
       >
         Weather Activity Rankings
       </h1>
+
       <p style={{ color: "#6b7280", marginBottom: "2rem" }}>
         Paris, France — {DEFAULT_LAT}°N, {DEFAULT_LON}°E
       </p>
 
-      {/* Current conditions strip */}
-      <div
-        style={{
-          display: "flex",
-          gap: "1.5rem",
-          background: "#f8fafc",
-          border: "1px solid #e0e2e6",
-          borderRadius: "12px",
-          padding: "1rem 1.5rem",
-          marginBottom: "2rem",
-          flexWrap: "wrap",
-        }}
-      >
-        <Stat label="Temp" value={`${conditions.temperature} °C`} />
-        <Stat label="Wind" value={`${conditions.windSpeed} km/h`} />
-        <Stat label="Rain" value={`${conditions.precipitation} mm`} />
-        <Stat label="UV" value={String(conditions.uvIndex)} />
-      </div>
-
-      {/* Rankings list */}
-      <ol
-        style={{
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.75rem",
-        }}
-      >
-        {rankings.map((r, i) => (
-          <li
-            key={r.activity}
+      {fetchError || !rankings || !conditions ? (
+        <div style={{ color: "#dc2626", fontWeight: 500, marginTop: "2rem" }}>
+          Unable to fetch rankings data. Please ensure the API is running.
+          <br />
+          (This page requires the backend API to be available at build time.)
+        </div>
+      ) : (
+        <>
+          {/* Current conditions strip */}
+          <div
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              background: "#ffffff",
+              gap: "1.5rem",
+              background: "#f8fafc",
               border: "1px solid #e0e2e6",
               borderRadius: "12px",
-              padding: "1rem 1.25rem",
-              boxShadow: "0 1px 3px rgba(45,127,249,0.08)",
+              padding: "1rem 1.5rem",
+              marginBottom: "2rem",
+              flexWrap: "wrap",
             }}
           >
-            <span
-              style={{ color: "#9ca3af", fontWeight: 600, minWidth: "1.5rem" }}
-            >
-              {i + 1}
-            </span>
-            <span style={{ fontSize: "1.5rem" }}>
-              {ACTIVITY_EMOJI[r.activity] ?? "🏅"}
-            </span>
-            <span
-              style={{
-                flex: 1,
-                textTransform: "capitalize",
-                fontWeight: 500,
-                fontSize: "1rem",
-              }}
-            >
-              {r.activity}
-            </span>
-            <span
-              style={{
-                fontWeight: 700,
-                fontSize: "1.1rem",
-                color: SCORE_COLOR(r.score),
-                minWidth: "3rem",
-                textAlign: "right",
-              }}
-            >
-              {r.score}
-            </span>
-            <span style={{ color: "#9ca3af", fontSize: "0.85rem" }}>/100</span>
-          </li>
-        ))}
-      </ol>
+            <Stat label="Temp" value={`${conditions.temperature} °C`} />
+            <Stat label="Wind" value={`${conditions.windSpeed} km/h`} />
+            <Stat label="Rain" value={`${conditions.precipitation} mm`} />
+            <Stat label="UV" value={String(conditions.uvIndex)} />
+          </div>
+
+          {/* Rankings list */}
+          <ol
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.75rem",
+            }}
+          >
+            {rankings.map((r, i) => (
+              <li
+                key={r.activity}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                  background: "#ffffff",
+                  border: "1px solid #e0e2e6",
+                  borderRadius: "12px",
+                  padding: "1rem 1.25rem",
+                  boxShadow: "0 1px 3px rgba(45,127,249,0.08)",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#9ca3af",
+                    fontWeight: 600,
+                    minWidth: "1.5rem",
+                  }}
+                >
+                  {i + 1}
+                </span>
+                <span style={{ fontSize: "1.5rem" }}>
+                  {ACTIVITY_EMOJI[r.activity] ?? "🏅"}
+                </span>
+                <span
+                  style={{
+                    flex: 1,
+                    textTransform: "capitalize",
+                    fontWeight: 500,
+                    fontSize: "1rem",
+                  }}
+                >
+                  {r.activity}
+                </span>
+                <span
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1.1rem",
+                    color: SCORE_COLOR(r.score),
+                    minWidth: "3rem",
+                    textAlign: "right",
+                  }}
+                >
+                  {r.score}
+                </span>
+                <span style={{ color: "#9ca3af", fontSize: "0.85rem" }}>
+                  /100
+                </span>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
     </main>
   );
 }

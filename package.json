@@ -2,22 +2,34 @@
   "name": "weather-ranking-app",
   "version": "1.0.0",
   "private": true,
+  "description": "Monorepo for Weather Ranking App (NestJS, Next.js, Turborepo)",
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "packageManager": "npm@10.9.2",
-  "description": "App to know the weather for some sport activities",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run start:dev",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "postinstall": "turbo run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "devDependencies": {
     "turbo": "^2.5.3"
+  },
+  "dependencies": {
+    "@as-integrations/express5": "^1.1.2"
   }
 }
