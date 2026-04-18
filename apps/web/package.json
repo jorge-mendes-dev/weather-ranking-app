@@ -10,7 +10,9 @@
     "url": ""
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env PORT=3001 next dev",
+    "dev:api": "npm run dev:tsnode --workspace=apps/api",
+    "start:dev": "npm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -20,7 +22,7 @@
     "@weather-app/types": "*",
     "graphql": "^16.13.2",
     "graphql-request": "^7.1.2",
-    "next": "^15.3.0",
+    "next": "^16.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
