@@ -15,7 +15,8 @@
     "dev": "turbo run start:dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "postinstall": "turbo run build"
+    "postinstall": "turbo run build",
+    "api:dev:tsnode": "npm run dev:tsnode --workspace=apps/api"
   },
   "keywords": [],
   "workspaces": [

@@ -1,8 +1,8 @@
-
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AppResolver } from './app.resolver';
+import { RankingModule } from './ranking/ranking.module';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -10,7 +10,8 @@ import { AppResolver } from './app.resolver';
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
+    WeatherModule,
+    RankingModule,
   ],
-  providers: [AppResolver],
 })
 export class AppModule {}
