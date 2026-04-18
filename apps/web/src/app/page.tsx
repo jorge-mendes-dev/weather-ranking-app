@@ -54,113 +54,53 @@ export default async function Home() {
   }
 
   return (
-    <main
-      style={{
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        maxWidth: "720px",
-        margin: "0 auto",
-        padding: "2rem 1rem",
-        color: "#181d26",
-      }}
-    >
-      <h1
-        style={{ fontSize: "2rem", fontWeight: 700, marginBottom: "0.25rem" }}
-      >
+    <main className="max-w-2xl mx-auto px-4 py-8 text-navy font-haas">
+      <h1 className="text-section-heading font-haas mb-1 font-normal tracking-wide">
         Weather Activity Rankings
       </h1>
-
-      <p style={{ color: "#6b7280", marginBottom: "2rem" }}>
+      <p className="text-text-weak mb-8">
         Paris, France — {DEFAULT_LAT}°N, {DEFAULT_LON}°E
       </p>
-
       {fetchError || !rankings || !conditions ? (
-        <div style={{ color: "#dc2626", fontWeight: 500, marginTop: "2rem" }}>
+        <div className="text-red-600 font-medium mt-8">
           Unable to fetch rankings data. Please ensure the API is running.
           <br />
-          (This page requires the backend API to be available at build time.)
+          <span className="text-xs text-text-weak">
+            (This page requires the backend API to be available at build time.)
+          </span>
         </div>
       ) : (
         <>
           {/* Current conditions strip */}
-          <div
-            style={{
-              display: "flex",
-              gap: "1.5rem",
-              background: "#f8fafc",
-              border: "1px solid #e0e2e6",
-              borderRadius: "12px",
-              padding: "1rem 1.5rem",
-              marginBottom: "2rem",
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="flex flex-wrap gap-6 bg-light-surface border border-border rounded-md px-6 py-4 mb-8">
             <Stat label="Temp" value={`${conditions.temperature} °C`} />
             <Stat label="Wind" value={`${conditions.windSpeed} km/h`} />
             <Stat label="Rain" value={`${conditions.precipitation} mm`} />
             <Stat label="UV" value={String(conditions.uvIndex)} />
           </div>
-
           {/* Rankings list */}
-          <ol
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.75rem",
-            }}
-          >
+          <ol className="flex flex-col gap-3 list-none p-0 m-0">
             {rankings.map((r, i) => (
               <li
                 key={r.activity}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
-                  background: "#ffffff",
-                  border: "1px solid #e0e2e6",
-                  borderRadius: "12px",
-                  padding: "1rem 1.25rem",
-                  boxShadow: "0 1px 3px rgba(45,127,249,0.08)",
-                }}
+                className="flex items-center gap-4 bg-white border border-border rounded-md px-5 py-4 shadow-blue-tint"
               >
-                <span
-                  style={{
-                    color: "#9ca3af",
-                    fontWeight: 600,
-                    minWidth: "1.5rem",
-                  }}
-                >
+                <span className="text-gray-400 font-semibold min-w-[1.5rem]">
                   {i + 1}
                 </span>
-                <span style={{ fontSize: "1.5rem" }}>
+                <span className="text-2xl">
                   {ACTIVITY_EMOJI[r.activity] ?? "🏅"}
                 </span>
-                <span
-                  style={{
-                    flex: 1,
-                    textTransform: "capitalize",
-                    fontWeight: 500,
-                    fontSize: "1rem",
-                  }}
-                >
+                <span className="flex-1 capitalize font-medium text-base">
                   {r.activity}
                 </span>
                 <span
-                  style={{
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    color: SCORE_COLOR(r.score),
-                    minWidth: "3rem",
-                    textAlign: "right",
-                  }}
+                  className="font-bold text-lg min-w-[3rem] text-right"
+                  style={{ color: SCORE_COLOR(r.score) }}
                 >
                   {r.score}
                 </span>
-                <span style={{ color: "#9ca3af", fontSize: "0.85rem" }}>
-                  /100
-                </span>
+                <span className="text-gray-400 text-sm">/100</span>
               </li>
             ))}
           </ol>
@@ -173,17 +113,10 @@ export default async function Home() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div
-        style={{
-          fontSize: "0.75rem",
-          color: "#6b7280",
-          textTransform: "uppercase",
-          letterSpacing: "0.05em",
-        }}
-      >
+      <div className="text-xs text-text-weak uppercase tracking-wide">
         {label}
       </div>
-      <div style={{ fontWeight: 600, fontSize: "1rem" }}>{value}</div>
+      <div className="font-semibold text-base">{value}</div>
     </div>
   );
 }
