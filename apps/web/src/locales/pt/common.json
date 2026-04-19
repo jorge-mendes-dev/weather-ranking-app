@@ -1,0 +1,15 @@
+{
+  "title": "Ranking do Clima",
+  "description": "Encontre o melhor clima para suas atividades esportivas",
+  "best_activity_today": "Melhor Atividade de Hoje",
+  "best_day_this_week": "Melhor Dia da Semana",
+  "search_placeholder": "Buscar atividades...",
+  "unable_to_fetch": "Não foi possível obter os dados de ranking. Certifique-se de que a API está em execução.",
+  "weather_activity_rankings": "Ranking de Atividades pelo Clima",
+  "location": "Paris, França — {{lat}}°N, {{lon}}°E",
+  "temp": "Temp",
+  "wind": "Vento",
+  "rain": "Chuva",
+  "uv": "UV",
+  "best": "Melhor"
+}

@@ -31,7 +31,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.2.2",
-    "@heroicons/react": "^2.1.1"
+    "@heroicons/react": "^2.1.1",
+    "i18next": "^23.10.0",
+    "react-i18next": "^13.2.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",

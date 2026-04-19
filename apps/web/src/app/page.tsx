@@ -1,6 +1,5 @@
 import type { ActivityRanking } from "@weather-app/types";
-import { ErrorMessage } from "./components/ErrorMessage";
-import HomeClient from "./HomeClient";
+import HomeClientShell from "./HomeClientShell";
 import { fetchRankings } from "./services/api";
 
 // Default location: Paris, France
@@ -20,20 +19,12 @@ export default async function Home() {
   }
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-8 text-navy font-haas">
-      <h1 className="text-section-heading font-haas mb-1 font-normal tracking-wide">
-        Weather Activity Rankings
-      </h1>
-      <p className="text-text-weak mb-8">
-        Paris, France — {DEFAULT_LAT}°N, {DEFAULT_LON}°E
-      </p>
-      {fetchError || !rankings || !conditions ? (
-        <ErrorMessage>
-          Unable to fetch rankings data. Please ensure the API is running.
-        </ErrorMessage>
-      ) : (
-        <HomeClient rankings={rankings} conditions={conditions} />
-      )}
-    </main>
+    <HomeClientShell
+      rankings={rankings}
+      conditions={conditions}
+      fetchError={fetchError}
+      defaultLat={DEFAULT_LAT}
+      defaultLon={DEFAULT_LON}
+    />
   );
 }

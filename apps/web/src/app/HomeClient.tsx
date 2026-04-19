@@ -1,6 +1,7 @@
 "use client";
 import type { ActivityRanking } from "@weather-app/types";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityRankingList } from "./components/ActivityRankingList";
 import { ConditionsStrip } from "./components/ConditionsStrip";
 import { SearchBar } from "./components/SearchBar";
@@ -27,6 +28,7 @@ interface HomeClientProps {
 
 export default function HomeClient({ rankings, conditions }: HomeClientProps) {
   const [query, setQuery] = useState("");
+  const { t } = useTranslation();
 
   const filtered = useMemo(() => {
     if (!query) return rankings;
@@ -39,8 +41,8 @@ export default function HomeClient({ rankings, conditions }: HomeClientProps) {
     <>
       <div className="mb-8">
         <SearchBar
-          placeholder="Search activities..."
-          icon={<SearchIcon className="w-5 h-5 text-gray-400" />}
+          placeholder={t("search_placeholder")}
+          icon={<SearchIcon className="w-5 h-5 text-text-weak" />}
           onSearch={setQuery}
         />
       </div>
