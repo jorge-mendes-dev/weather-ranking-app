@@ -1,9 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { WeatherCondition } from '@weather-app/types';
-import { firstValueFrom } from 'rxjs';
 
-const OPEN_METEO_BASE_URL = 'https://api.open-meteo.com/v1/forecast';
+import { firstValueFrom } from 'rxjs';
 
 interface OpenMeteoResponse {
   current: {
@@ -22,8 +21,11 @@ export class WeatherService {
     latitude: number,
     longitude: number,
   ): Promise<WeatherCondition> {
-    const { data } = await firstValueFrom(
-      this.httpService.get<OpenMeteoResponse>(OPEN_METEO_BASE_URL, {
+    const baseUrl =
+      process.env.OPEN_METEO_BASE_URL ||
+      'https://api.open-meteo.com/v1/forecast';
+    const response = await firstValueFrom(
+      this.httpService.get<OpenMeteoResponse>(baseUrl, {
         params: {
           latitude,
           longitude,
@@ -31,7 +33,19 @@ export class WeatherService {
         },
       }),
     );
-
+    const data = response.data;
+    // Runtime type guard for weather response
+    if (
+      !data ||
+      typeof data !== 'object' ||
+      typeof data.current !== 'object' ||
+      typeof data.current.temperature_2m !== 'number' ||
+      typeof data.current.wind_speed_10m !== 'number' ||
+      typeof data.current.precipitation !== 'number' ||
+      typeof data.current.uv_index !== 'number'
+    ) {
+      throw new Error('Invalid weather data from Open-Meteo API');
+    }
     return {
       temperature: data.current.temperature_2m,
       windSpeed: data.current.wind_speed_10m,
