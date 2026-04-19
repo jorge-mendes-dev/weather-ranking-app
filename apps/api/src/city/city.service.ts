@@ -32,7 +32,6 @@ export class CityService {
       const params = { name: normalized };
       const fullUrl = `${apiUrl}?name=${encodeURIComponent(normalized)}`;
       this.logger.log(`Requesting URL: ${fullUrl}`);
-      this.logger.debug(`Request params: ${JSON.stringify(params)}`);
 
       const response = await firstValueFrom(
         this.httpService.get<GeocodingApiResponse>(apiUrl, {
