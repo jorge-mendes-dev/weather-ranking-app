@@ -15,7 +15,6 @@ interface GeocodingApiResponse {
 }
 
 @Injectable()
-
 export class CityService {
   private readonly logger = new Logger(CityService.name);
   constructor(private readonly httpService: HttpService) {}
@@ -36,16 +35,20 @@ export class CityService {
           params: { name: normalized },
         }),
       );
-      const results = response.data.results?.map((r) => ({
-        name: r.name,
-        country: r.country,
-        latitude: r.latitude,
-        longitude: r.longitude,
-      })) ?? [];
+      const results =
+        response.data.results?.map((r) => ({
+          name: r.name,
+          country: r.country,
+          latitude: r.latitude,
+          longitude: r.longitude,
+        })) ?? [];
       this.logger.log(`Found ${results.length} cities for name: ${normalized}`);
       return results;
     } catch (error) {
-      this.logger.error('Error searching cities', error instanceof Error ? error.stack : String(error));
+      this.logger.error(
+        'Error searching cities',
+        error instanceof Error ? error.stack : String(error),
+      );
       return [];
     }
   }

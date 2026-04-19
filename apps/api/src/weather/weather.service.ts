@@ -47,10 +47,15 @@ export class WeatherService {
         typeof data.current.precipitation !== 'number' ||
         typeof data.current.uv_index !== 'number'
       ) {
-        this.logger.error('Invalid weather data from Open-Meteo API', JSON.stringify(data));
+        this.logger.error(
+          'Invalid weather data from Open-Meteo API',
+          JSON.stringify(data),
+        );
         throw new Error('Invalid weather data from Open-Meteo API');
       }
-      this.logger.log(`Weather data fetched for lat: ${latitude}, lon: ${longitude}`);
+      this.logger.log(
+        `Weather data fetched for lat: ${latitude}, lon: ${longitude}`,
+      );
       return {
         temperature: data.current.temperature_2m,
         windSpeed: data.current.wind_speed_10m,
@@ -58,7 +63,10 @@ export class WeatherService {
         uvIndex: data.current.uv_index,
       };
     } catch (error) {
-      this.logger.error('Error fetching weather data', error instanceof Error ? error.stack : String(error));
+      this.logger.error(
+        'Error fetching weather data',
+        error instanceof Error ? error.stack : String(error),
+      );
       throw error;
     }
   }

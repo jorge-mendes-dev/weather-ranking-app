@@ -34,7 +34,9 @@ export class RankingService {
       score: this.score(activity, conditions),
       conditions,
     })).sort((a, b) => b.score - a.score);
-    this.logger.log(`Rankings calculated for lat: ${latitude}, lon: ${longitude}`);
+    this.logger.log(
+      `Rankings calculated for lat: ${latitude}, lon: ${longitude}`,
+    );
     return rankings;
   }
 
