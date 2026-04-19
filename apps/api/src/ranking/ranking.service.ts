@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import {
   ActivityRanking,
   SportActivity,
@@ -17,22 +17,25 @@ const ACTIVITIES: SportActivity[] = [
 
 @Injectable()
 export class RankingService {
+  private readonly logger = new Logger(RankingService.name);
   constructor(private readonly weatherService: WeatherService) {}
 
   async getRankings(
     latitude: number,
     longitude: number,
   ): Promise<ActivityRanking[]> {
+    this.logger.log(`Getting rankings for lat: ${latitude}, lon: ${longitude}`);
     const conditions = await this.weatherService.getWeatherConditions(
       latitude,
       longitude,
     );
-
-    return ACTIVITIES.map((activity) => ({
+    const rankings = ACTIVITIES.map((activity) => ({
       activity,
       score: this.score(activity, conditions),
       conditions,
     })).sort((a, b) => b.score - a.score);
+    this.logger.log(`Rankings calculated for lat: ${latitude}, lon: ${longitude}`);
+    return rankings;
   }
 
   private score(activity: SportActivity, w: WeatherCondition): number {

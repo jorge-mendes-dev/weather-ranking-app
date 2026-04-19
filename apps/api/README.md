@@ -83,3 +83,95 @@ npm run test:cov
 npm run lint
 npm run format
 ```
+
+## Example Queries
+
+### Search for Cities
+
+```
+query {
+  searchCities(name: "Lisbon") {
+    name
+    country
+    latitude
+    longitude
+  }
+}
+```
+
+**Response:**
+```
+{
+  "data": {
+    "searchCities": [
+      {
+        "name": "Lisbon",
+        "country": "PT",
+        "latitude": 38.7167,
+        "longitude": -9.1333
+      },
+      ...
+    ]
+  }
+}
+```
+
+### Get Activity Rankings by Weather
+
+```
+query {
+  rankings(latitude: 38.7167, longitude: -9.1333) {
+    activity
+    score
+    conditions {
+      temperature
+      windSpeed
+      precipitation
+      uvIndex
+    }
+  }
+}
+```
+
+**Response:**
+```
+{
+  "data": {
+    "rankings": [
+      {
+        "activity": "surfing",
+        "score": 92,
+        "conditions": {
+          "temperature": 22,
+          "windSpeed": 10,
+          "precipitation": 0,
+          "uvIndex": 6
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
+## Error Handling
+
+All errors are returned in standard GraphQL error format. Example:
+
+```
+{
+  "errors": [
+    {
+      "message": "Invalid weather data from Open-Meteo API",
+      "locations": [...],
+      "path": ["rankings"]
+    }
+  ],
+  "data": null
+}
+```
+
+## Notes
+- All inputs are validated. Invalid coordinates or missing fields will return a validation error.
+- The API is read-only and does not require authentication.
+- For more schema details, use the GraphQL playground at `/graphql` after starting the server.
