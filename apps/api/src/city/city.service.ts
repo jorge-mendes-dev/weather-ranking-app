@@ -21,14 +21,14 @@ export class CityService {
   async searchCities(name: string): Promise<CityResult[]> {
     const normalized: string = (name ?? '').toString().trim().toLowerCase();
     if (!normalized) return [];
+    const baseUrl = process.env.OPEN_METEO_BASE_URL
+      ? process.env.OPEN_METEO_BASE_URL + 'search'
+      : 'https://geocoding-api.open-meteo.com/v1/search';
     try {
       const response = await firstValueFrom(
-        this.httpService.get<GeocodingApiResponse>(
-          'https://geocoding-api.open-meteo.com/v1/search',
-          {
-            params: { name: normalized },
-          },
-        ),
+        this.httpService.get<GeocodingApiResponse>(baseUrl, {
+          params: { name: normalized },
+        }),
       );
       return (
         response.data.results?.map((r) => ({

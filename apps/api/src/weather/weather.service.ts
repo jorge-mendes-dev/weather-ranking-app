@@ -21,9 +21,9 @@ export class WeatherService {
     latitude: number,
     longitude: number,
   ): Promise<WeatherCondition> {
-    const baseUrl =
-      process.env.OPEN_METEO_BASE_URL ||
-      'https://api.open-meteo.com/v1/forecast';
+    const baseUrl = process.env.OPEN_METEO_BASE_URL
+      ? process.env.OPEN_METEO_BASE_URL + 'forecast'
+      : 'https://api.open-meteo.com/v1/forecast';
     const response = await firstValueFrom(
       this.httpService.get<OpenMeteoResponse>(baseUrl, {
         params: {
