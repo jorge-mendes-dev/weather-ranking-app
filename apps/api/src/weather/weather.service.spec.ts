@@ -68,4 +68,54 @@ describe('WeatherService', () => {
       'Invalid weather data from Open-Meteo API',
     );
   });
+  it('should return 7-day weather conditions for valid response', async () => {
+    const mockData = {
+      daily: {
+        time: ['2026-04-19', '2026-04-20', '2026-04-21', '2026-04-22', '2026-04-23', '2026-04-24', '2026-04-25'],
+        temperature_2m_max: [20, 21, 22, 23, 24, 25, 26],
+        temperature_2m_min: [10, 11, 12, 13, 14, 15, 16],
+        wind_speed_10m_max: [5, 6, 7, 8, 9, 10, 11],
+        precipitation_sum: [0, 1, 0, 2, 0, 1, 0],
+        uv_index_max: [6, 7, 8, 9, 10, 11, 12],
+      },
+    };
+    const mockResponse: AxiosResponse = {
+      data: mockData,
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: { headers: new AxiosHeaders() },
+    };
+    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse));
+    const result = await service.get7DayWeatherConditions(10, 20);
+    expect(result).toHaveLength(7);
+    expect(result[0]).toEqual({
+      day: '2026-04-19',
+      temperature: 15,
+      windSpeed: 5,
+      precipitation: 0,
+      uvIndex: 6,
+    });
+    expect(result[6]).toEqual({
+      day: '2026-04-25',
+      temperature: 21,
+      windSpeed: 11,
+      precipitation: 0,
+      uvIndex: 12,
+    });
+  });
+
+  it('should throw error for invalid 7-day response', async () => {
+    const mockResponse: AxiosResponse = {
+      data: {},
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: { headers: new AxiosHeaders() },
+    };
+    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse));
+    await expect(service.get7DayWeatherConditions(10, 20)).rejects.toThrow(
+      'Invalid daily weather data from Open-Meteo API',
+    );
+  });
 });

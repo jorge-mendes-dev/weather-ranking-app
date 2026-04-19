@@ -20,19 +20,23 @@ export class CityService {
   constructor(private readonly httpService: HttpService) {}
 
   async searchCities(name: string): Promise<CityResult[]> {
-    const normalized: string = (name ?? '').toString().trim().toLowerCase();
+    const normalized: string = (name ?? '').toString().trim();
     if (!normalized) {
       this.logger.warn('Empty city name provided to searchCities');
       return [];
     }
-    const baseUrl = process.env.OPEN_METEO_BASE_URL
-      ? process.env.OPEN_METEO_BASE_URL + 'search'
-      : 'https://geocoding-api.open-meteo.com/v1/search';
     try {
       this.logger.log(`Searching cities for name: ${normalized}`);
+
+      const apiUrl = 'https://geocoding-api.open-meteo.com/v1/search';
+      const params = { name: normalized };
+      const fullUrl = `${apiUrl}?name=${encodeURIComponent(normalized)}`;
+      this.logger.log(`Requesting URL: ${fullUrl}`);
+      this.logger.debug(`Request params: ${JSON.stringify(params)}`);
+
       const response = await firstValueFrom(
-        this.httpService.get<GeocodingApiResponse>(baseUrl, {
-          params: { name: normalized },
+        this.httpService.get<GeocodingApiResponse>(apiUrl, {
+          params,
         }),
       );
       const results =

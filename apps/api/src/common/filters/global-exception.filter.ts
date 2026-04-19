@@ -26,7 +26,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     if (ctxType === 'http') {
       const res = host.switchToHttp().getResponse();
       res.status(status).json(response);
-    } else if (ctxType === 'graphql') {
+    } else {
+      // Treat all non-http as GraphQL (NestJS v11: ctxType is 'http', 'ws', or 'rpc')
+      // See: https://docs.nestjs.com/exception-filters#graphql
       const gqlHost = GqlArgumentsHost.create(host);
       throw new HttpException(response, status);
     }

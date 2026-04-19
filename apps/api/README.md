@@ -116,6 +116,46 @@ query {
 }
 ```
 
+
+### Get 7-Day Weather Forecast
+
+```
+query {
+  weather7Day(latitude: 38.7167, longitude: -9.1333) {
+    day
+    temperature
+    windSpeed
+    precipitation
+    uvIndex
+  }
+}
+```
+
+**Response:**
+```
+{
+  "data": {
+    "weather7Day": [
+      {
+        "day": "2026-04-19",
+        "temperature": 15,
+        "windSpeed": 5,
+        "precipitation": 0,
+        "uvIndex": 6
+      },
+      {
+        "day": "2026-04-20",
+        "temperature": 16,
+        "windSpeed": 6,
+        "precipitation": 1,
+        "uvIndex": 7
+      },
+      ...
+    ]
+  }
+}
+```
+
 ### Get Activity Rankings by Weather
 
 ```
