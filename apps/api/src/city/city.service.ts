@@ -28,13 +28,14 @@ export class CityService {
     try {
       this.logger.log(`Searching cities for name: ${normalized}`);
 
-      const apiUrl = 'https://geocoding-api.open-meteo.com/v1/search';
       const params = { name: normalized };
-      const fullUrl = `${apiUrl}?name=${encodeURIComponent(normalized)}`;
-      this.logger.log(`Requesting URL: ${fullUrl}`);
+      const baseUrl = process.env.GEO_METEO_API
+        ? process.env.GEO_METEO_API
+        : 'https://geocoding-api.open-meteo.com/v1/search';
 
+      const fullUrl = `${baseUrl}?name=${encodeURIComponent(normalized)}`;
       const response = await firstValueFrom(
-        this.httpService.get<GeocodingApiResponse>(apiUrl, {
+        this.httpService.get<GeocodingApiResponse>(fullUrl, {
           params,
         }),
       );
