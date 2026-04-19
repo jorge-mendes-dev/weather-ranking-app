@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
+import { AxiosHeaders, AxiosResponse } from 'axios';
 import { of } from 'rxjs';
 import { WeatherService } from './weather.service';
 
@@ -37,7 +38,14 @@ describe('WeatherService', () => {
         uv_index: 6,
       },
     };
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(of({ data: mockData }));
+    const mockResponse: AxiosResponse = {
+      data: mockData,
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: { headers: new AxiosHeaders() },
+    };
+    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse));
     const result = await service.getWeatherConditions(10, 20);
     expect(result).toEqual({
       temperature: 22,
@@ -48,7 +56,14 @@ describe('WeatherService', () => {
   });
 
   it('should throw error for invalid response', async () => {
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(of({ data: {} }));
+    const mockResponse: AxiosResponse = {
+      data: {},
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: { headers: new AxiosHeaders() },
+    };
+    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse));
     await expect(service.getWeatherConditions(10, 20)).rejects.toThrow(
       'Invalid weather data from Open-Meteo API',
     );

@@ -1,5 +1,6 @@
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
+import { AxiosHeaders, AxiosResponse } from 'axios';
 import { of, throwError } from 'rxjs';
 import { CityService } from './city.service';
 
@@ -22,7 +23,7 @@ describe('CityService', () => {
   });
 
   it('should return city results on success', async () => {
-    const mockResponse = {
+    const mockResponse: AxiosResponse = {
       data: {
         results: [
           {
@@ -33,8 +34,12 @@ describe('CityService', () => {
           },
         ],
       },
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: { headers: new AxiosHeaders() },
     };
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse as any));
+    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse));
     const result = await service.searchCities('London');
     expect(result).toEqual([
       {
@@ -47,8 +52,14 @@ describe('CityService', () => {
   });
 
   it('should return empty array if no results', async () => {
-    const mockResponse = { data: { results: [] } };
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse as any));
+    const mockResponse: AxiosResponse = {
+      data: { results: [] },
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: { headers: new AxiosHeaders() },
+    };
+    jest.spyOn(httpService, 'get').mockReturnValueOnce(of(mockResponse));
     const result = await service.searchCities('Unknown');
     expect(result).toEqual([]);
   });
