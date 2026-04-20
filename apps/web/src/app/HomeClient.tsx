@@ -134,42 +134,50 @@ export default function HomeClient() {
 
   // UI rendering by state
   return (
-    <div className="flex flex-col items-center w-full max-w-2xl mx-auto mt-16 justify-center">
+    <div className="flex flex-col items-center w-full mx-auto justify-center">
       {/* Hero Section */}
       <section
-        className={`w-full flex flex-col items-center justify-center text-center mb-10 transition-opacity duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className={`w-full flex flex-col items-center justify-center text-center gap-3 mt-8 mb-4 transition-opacity duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-3 text-text drop-shadow-lg">
-          {t("common:hero_title", "Find the Best Weather for Your Activities")}
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-1">
+          {t("common:hero_title", "Find the best activities based on weather")}
         </h1>
-        <p className="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
+        <p className="text-base md:text-lg text-gray-600 mb-2 max-w-xl mx-auto">
           {t(
             "common:hero_subtitle",
-            "Search any city and get a ranked forecast for outdoor, indoor, surfing, and skiing days.",
+            "Search a city to get a 7-day activity ranking",
           )}
         </p>
       </section>
       {/* Search Bar always visible */}
       <div
-        className={`w-full mb-8 transition-opacity duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className={`w-full max-w-3xl mx-auto mb-6 flex justify-center transition-opacity duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
         <SearchBar
           placeholder={t(
             "common:search_city_placeholder",
-            "Enter a city name...",
+            "Start typing a city to search",
           )}
           onSearch={handleSearch}
         />
       </div>
+      {/* Empty state */}
+      {appState === "IDLE" && (
+        <div className="w-full max-w-3xl mx-auto text-center text-gray-400 text-base mt-8 animate-fade-in">
+          {t("common:empty_state", "Start typing a city to search")}
+        </div>
+      )}
       {/* State: SEARCHING - show city results */}
       {appState === "SEARCHING" && (
-        <div className="w-full animate-fade-in">
+        <div className="w-full max-w-3xl mx-auto animate-fade-in">
           {searchLoading && (
-            <div className="text-brand mb-2">
+            <div className="text-brand mb-2 text-center">
               {t("common:loading", "Loading...")}
             </div>
           )}
-          {searchError && <div className="text-error mb-2">{searchError}</div>}
+          {searchError && (
+            <div className="text-error mb-2 text-center">{searchError}</div>
+          )}
           <CityCardList
             cities={searchResults}
             onSelect={handleSelectCity}
@@ -179,19 +187,19 @@ export default function HomeClient() {
       )}
       {/* State: LOADING_FORECAST */}
       {appState === "LOADING_FORECAST" && (
-        <div className="w-full flex justify-center items-center min-h-30 animate-fade-in">
-          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-brand"></div>
+        <div className="w-full max-w-3xl mx-auto flex justify-center items-center min-h-30 animate-fade-in">
+          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-brand transition-all duration-300 ease-in-out shadow-lg hover:scale-110"></div>
         </div>
       )}
       {/* State: READY - show forecast */}
       {appState === "READY" && forecast && (
-        <div className="w-full mt-8 animate-fade-in">
+        <div className="w-full max-w-3xl mx-auto mt-8 animate-fade-in">
           <ForecastView forecast={forecast} />
         </div>
       )}
       {/* State: ERROR */}
       {appState === "ERROR" && (
-        <div className="text-error mt-6 animate-fade-in">
+        <div className="text-error mt-6 animate-fade-in text-center">
           {searchError ||
             forecastError ||
             t("common:error", "Something went wrong")}

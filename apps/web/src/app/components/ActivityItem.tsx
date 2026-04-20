@@ -17,32 +17,36 @@ export function ActivityItem({
 }: ActivityItemProps) {
   const { t } = useTranslation();
   const getScoreColor = (score: number) => {
-    if (score >= 70) return "text-brand";
-    if (score >= 40) return "text-warn";
+    if (score >= 70) return "text-blue-600";
+    if (score >= 40) return "text-yellow-600";
     return "text-gray-400";
   };
 
   return (
     <div
-      className={`flex items-center gap-4 ${isBest ? "font-bold" : ""} font-display transition-all duration-150`}
+      className={`flex items-center gap-3 font-display transition-all duration-200 hover:shadow-md hover:bg-gray-50 hover:-translate-y-0.5 hover:scale-[1.01] focus:shadow-lg focus:border-blue-200`}
     >
-      {icon && <span className="text-xl">{icon}</span>}
+      {icon && <span className="text-lg">{icon}</span>}
       <span
-        className={`capitalize text-base tracking-tight text-text ${isBest ? "font-semibold" : ""}`}
+        className={`capitalize text-base tracking-tight text-gray-800 ${isBest ? "font-semibold" : ""}`}
       >
         {activity}
       </span>
       <span
-        className={`ml-auto font-mono text-xs uppercase tracking-widest px-2 py-1 rounded-pill bg-gray-50 ${getScoreColor(score)} transition-colors`}
+        className={`ml-auto font-mono text-xs px-2 py-0.5 rounded bg-gray-100 ${getScoreColor(score)} transition-colors`}
       >
         {score}/10
       </span>
       {isBest && (
-        <span className="ml-2 px-2 py-0.5 rounded-pill bg-brand-light text-brand-deep text-xs font-semibold animate-pulse">
+        <span className="ml-2 px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-xs font-semibold animate-pulse">
           {t("best")}
         </span>
       )}
-      <span className="ml-4 text-sm text-gray-500">{reasoning}</span>
+      {reasoning && (
+        <span className="ml-3 text-xs text-gray-400 truncate max-w-xs">
+          {reasoning}
+        </span>
+      )}
     </div>
   );
 }

@@ -9,7 +9,7 @@ interface ForecastViewProps {
 
 export function ForecastView({ forecast }: ForecastViewProps) {
   return (
-    <section className="flex flex-col gap-8 w-full">
+    <section className="flex flex-col gap-8 w-full max-w-3xl mx-auto">
       <BestToday
         activity={forecast.bestToday.type}
         score={forecast.bestToday.score}
@@ -20,7 +20,7 @@ export function ForecastView({ forecast }: ForecastViewProps) {
         activity={forecast.bestDay.bestActivity.type}
         score={forecast.bestDay.bestActivity.score}
       />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 mt-8">
         {forecast.days.map((day) => (
           <DayCard
             key={day.date}
@@ -32,9 +32,6 @@ export function ForecastView({ forecast }: ForecastViewProps) {
             activities={[day.bestActivity, ...day.otherActivities]}
           />
         ))}
-      </div>
-      <div className="mt-8 text-center text-sm text-text-weak">
-        Other options below
       </div>
     </section>
   );

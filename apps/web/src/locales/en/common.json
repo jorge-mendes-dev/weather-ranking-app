@@ -1,4 +1,22 @@
 {
+  "navbar": {
+    "title": "Weather Ranking"
+  },
+  "searchbar": {
+    "button": "Search",
+    "aria_label": "Search"
+  },
+  "error_boundary": {
+    "something_went_wrong": "Something went wrong."
+  },
+  "error_message": {
+    "api_required": "(This page requires the backend API to be available at build time.)"
+  },
+  "not_found": {
+    "title": "Not Found",
+    "description": "Sorry, the page you are looking for does not exist.",
+    "go_home": "Go back home"
+  },
   "title": "Weather Ranking",
   "description": "Find the best weather for your sport activities",
   "best_activity_today": "Best Activity Today",
@@ -11,5 +29,11 @@
   "wind": "Wind",
   "rain": "Rain",
   "uv": "UV",
-  "best": "Best"
+  "best": "Best",
+  "activity_ranking_item": {
+    "out_of": "/{{value}}"
+  },
+  "city_card_list": {
+    "aria_label": "{{name}}, {{country}}"
+  }
 }

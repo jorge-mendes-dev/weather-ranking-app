@@ -16,10 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-color-bg text-color-text font-display">
+      <body className="min-h-screen bg-gray-50 text-color-text font-display">
         <Navbar />
-        <main className="hero-gradient min-h-[40vh] pb-24 pt-8 px-4 w-full flex flex-col items-center max-w-3xl mx-auto">
-          <ErrorBoundary>{children}</ErrorBoundary>
+        <main className="flex flex-col items-center w-full min-h-screen px-4 pt-10 pb-24">
+          <div className="w-full max-w-3xl flex flex-col gap-8">
+            <ErrorBoundary>{children}</ErrorBoundary>
+          </div>
         </main>
       </body>
     </html>

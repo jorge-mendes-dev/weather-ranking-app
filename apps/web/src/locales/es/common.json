@@ -1,4 +1,22 @@
 {
+  "navbar": {
+    "title": "Ranking del Clima"
+  },
+  "searchbar": {
+    "button": "Buscar",
+    "aria_label": "Buscar"
+  },
+  "error_boundary": {
+    "something_went_wrong": "Algo salió mal."
+  },
+  "error_message": {
+    "api_required": "(Esta página requiere que la API backend esté disponible en tiempo de compilación.)"
+  },
+  "not_found": {
+    "title": "No Encontrado",
+    "description": "Lo sentimos, la página que buscas no existe.",
+    "go_home": "Volver al inicio"
+  },
   "title": "Ranking del Clima",
   "description": "Encuentra el mejor clima para tus actividades deportivas",
   "best_activity_today": "Mejor Actividad de Hoy",
@@ -11,5 +29,11 @@
   "wind": "Viento",
   "rain": "Lluvia",
   "uv": "UV",
-  "best": "Mejor"
+  "best": "Mejor",
+  "activity_ranking_item": {
+    "out_of": "/{{value}}"
+  },
+  "city_card_list": {
+    "aria_label": "{{name}}, {{country}}"
+  }
 }

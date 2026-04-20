@@ -7,11 +7,11 @@ interface ErrorMessageProps {
 export function ErrorMessage({ children }: ErrorMessageProps) {
   const { t } = useTranslation();
   return (
-    <div className="text-error font-display text-base font-semibold mt-10">
+    <div className="text-red-500 font-display text-base font-semibold mt-8 text-center">
       {children}
       <br />
-      <span className="text-caption text-text-weak">
-        (This page requires the backend API to be available at build time.)
+      <span className="text-xs text-gray-400">
+        {t("error_message.api_required")}
       </span>
     </div>
   );

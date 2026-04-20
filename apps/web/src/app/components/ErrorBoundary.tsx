@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -9,6 +10,15 @@ interface ErrorBoundaryProps {
 interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
+}
+
+function ErrorBoundaryMessage() {
+  const { t } = useTranslation();
+  return (
+    <div className="text-red-500 font-display font-semibold mt-8 container mx-auto text-center">
+      <p>{t("error_boundary.something_went_wrong")}</p>
+    </div>
+  );
 }
 
 export class ErrorBoundary extends React.Component<
@@ -31,13 +41,7 @@ export class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      return (
-        this.props.fallback || (
-          <div className="text-error font-display font-semibold mt-8 container mx-auto text-center">
-            <p>Something went wrong.</p>
-          </div>
-        )
-      );
+      return this.props.fallback || <ErrorBoundaryMessage />;
     }
     return this.props.children;
   }

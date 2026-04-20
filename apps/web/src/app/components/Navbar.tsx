@@ -1,15 +1,16 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "./LanguageSelector";
 
 export function Navbar() {
+  const { t } = useTranslation();
   return (
-    <nav className="sticky top-0 z-30 w-full flex items-center justify-between py-5 px-8 border-b border-border bg-color-bg/80 backdrop-blur-md shadow-card font-display">
-      <span className="text-2xl font-semibold tracking-tight text-color-text select-none">
-        Weather Ranking
+    <nav className="sticky top-0 z-30 w-full flex items-center justify-between px-4 md:px-8 h-14 border-b border-gray-200 bg-white/80 backdrop-blur font-display">
+      <span className="text-lg md:text-xl font-semibold tracking-tight text-color-text select-none">
+        {t("navbar.title")}
       </span>
-      <div className="flex items-center gap-4">
-        <button className="hidden md:inline-block bg-color-text text-color-bg px-6 py-2 rounded-pill font-medium shadow-card hover:opacity-90 transition">
-          Get Started
-        </button>
+      <div className="flex items-center gap-2">
         <LanguageSelector />
       </div>
     </nav>
