@@ -31,7 +31,7 @@ export function SearchBar({
       {icon}
       <input
         type="text"
-        className="flex-1 border border-border rounded-md px-4 py-2 text-base font-haas tracking-normal focus:outline-none focus:ring-2 focus:ring-airtable-blue bg-white"
+        className="flex-1 border border-border rounded-pill px-5 py-2 text-base font-display tracking-normal focus:outline-none focus:ring-2 focus:ring-brand bg-white transition-all"
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
@@ -39,7 +39,7 @@ export function SearchBar({
       />
       <button
         type="submit"
-        className="ml-2 px-5 py-2 bg-airtable-blue text-white rounded-md font-haas font-medium text-base tracking-wide shadow-blue-tint hover:bg-mid-blue transition"
+        className="ml-2 px-6 py-2 bg-brand text-color-text rounded-pill font-display font-medium text-base tracking-wide shadow-card hover:bg-brand-deep hover:text-white transition-all"
       >
         Search
       </button>

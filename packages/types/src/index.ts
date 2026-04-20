@@ -12,3 +12,18 @@ export interface ActivityRanking {
   score: number; // 0–100
   conditions: WeatherCondition;
 }
+
+export interface City {
+  name: string;
+  country: string;
+  latitude: number;
+  longitude: number;
+};
+
+export interface Weather7Day {
+  day: string;
+  temperature: number;
+  windSpeed: number;
+  precipitation: number;
+  uvIndex: number;
+}

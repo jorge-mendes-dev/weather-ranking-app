@@ -1,33 +1,20 @@
-import { useTranslation } from "react-i18next";
-import { ActivityItem } from "./ActivityItem";
-
 interface BestDayProps {
-  day: {
-    date: string;
-    bestActivity: string;
-    bestScore: number;
-    reasoning: string;
-    icon?: React.ReactNode;
-  };
+  date: string;
+  activity: string;
+  score: number;
 }
 
-export function BestDay({ day }: BestDayProps) {
-  const { t } = useTranslation();
+export function BestDay({ date, activity, score }: BestDayProps) {
   return (
-    <section className="card mb-6">
-      <h2 className="text-section-heading font-haas mb-3 font-normal tracking-wide text-navy">
-        {t("best_day_this_week")}
-      </h2>
-      <div className="flex flex-col gap-2">
-        <span className="text-caption text-text-weak">{day.date}</span>
-        <ActivityItem
-          activity={day.bestActivity}
-          score={day.bestScore}
-          reasoning={day.reasoning}
-          isBest
-          icon={day.icon}
-        />
+    <div className="mb-4">
+      <div className="text-lg font-semibold text-text mb-2 font-display">
+        Best Day This Week
       </div>
-    </section>
+      <div className="bg-white border border-brand rounded-card px-6 py-4 shadow-card flex items-center gap-2">
+        <span className="font-bold text-brand mr-2">{date}</span>
+        <span className="capitalize font-semibold text-text">{activity}</span>
+        <span className="ml-2 text-brand font-mono">{score}/10</span>
+      </div>
+    </div>
   );
 }

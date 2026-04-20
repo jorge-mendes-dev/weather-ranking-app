@@ -7,7 +7,7 @@ interface ErrorMessageProps {
 export function ErrorMessage({ children }: ErrorMessageProps) {
   const { t } = useTranslation();
   return (
-    <div className="text-red-600 font-haas text-base font-semibold mt-10">
+    <div className="text-error font-display text-base font-semibold mt-10">
       {children}
       <br />
       <span className="text-caption text-text-weak">

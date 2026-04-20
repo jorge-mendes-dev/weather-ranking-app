@@ -24,12 +24,12 @@ export function DayCard({
   icon,
 }: DayCardProps) {
   return (
-    <div className="card mb-8 rounded-card shadow-blue-tint px-8 py-6">
+    <div className="card mb-8 bg-white border border-border rounded-card px-8 py-6 shadow-card font-display transition-all duration-150 hover:border-brand hover:shadow-md">
       <div className="flex items-center gap-4 mb-3">
-        <span className="font-haas text-card-title font-semibold tracking-wide text-navy">
+        <span className="text-xl font-semibold tracking-tight text-text">
           {date}
         </span>
-        <span className="ml-3 text-caption text-text-weak">{weatherLabel}</span>
+        <span className="ml-3 text-sm text-gray-500">{weatherLabel}</span>
       </div>
       <ActivityItem
         activity={bestActivity}
