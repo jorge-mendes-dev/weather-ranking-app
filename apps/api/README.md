@@ -34,6 +34,16 @@ Install dependencies from the **monorepo root**:
 npm install
 ```
 
+### Environment Variables
+
+Copy the example environment file and rename it to `.env` before running the application:
+
+```bash
+cp .env.example .env
+```
+
+Then, edit `.env` to provide any required secrets or configuration values.
+
 ### Run in development (watch mode)
 
 ```bash
