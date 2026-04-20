@@ -194,6 +194,58 @@ query {
 }
 ```
 
+## Ranking Logic
+
+The `RankingService` computes activity rankings for a given location and 7-day weather forecast. Each activity (e.g., surfing, skiing, hiking) is scored per day based on weather conditions:
+
+- **Temperature:** Penalty for being outside the ideal range for the activity.
+- **Wind Speed:** Penalty for exceeding the activity's wind threshold.
+- **Precipitation:** Penalty for excess precipitation.
+- **UV Index:** Flat penalty if outside the acceptable range.
+
+Scores are normalized to a 0–100 scale. See `src/ranking/ranking.service.ts` for details.
+
+### Example Ranking Query
+
+```
+query {
+  rankings(latitude: 38.7167, longitude: -9.1333) {
+    day
+    activity
+    score
+    conditions {
+      temperature
+      windSpeed
+      precipitation
+      uvIndex
+    }
+  }
+}
+```
+
+## Testing & Coverage
+
+- Unit and e2e tests are provided for all core services.
+- To run all tests:
+
+```bash
+npm run test
+npm run test:e2e
+npm run test:cov
+```
+
+### Test Coverage Notes
+- Mocks are used for weather data in ranking tests.
+- Contributors should ensure mocks match the actual service method signatures and data structures.
+- Add tests for error handling and edge cases (e.g., invalid input, empty weather data).
+
+## Contributor Recommendations
+
+- Add error handling and input validation in services.
+- Update and expand tests to cover edge cases and error scenarios.
+- Add comments to clarify complex logic, especially in scoring.
+- Follow NestJS and project best practices (see `.github/skills/`).
+
 ## Error Handling
 
 All errors are returned in standard GraphQL error format. Example:
