@@ -3,6 +3,9 @@ import { WeatherConditionResult } from './weather-condition.model';
 
 @ObjectType()
 export class ActivityRankingResult {
+  @Field(() => String, { description: 'Day in YYYY-MM-DD format' })
+  day: string;
+
   @Field(() => String, { description: 'Sport activity name' })
   activity: string;
 

@@ -1,11 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import {
-  ActivityRanking,
-  SportActivity,
-  WeatherCondition,
-} from '@weather-app/types';
+import { SportActivity, WeatherCondition } from '@weather-app/types';
 import { SCORING_THRESHOLDS } from '../common/constants/scoring.constants';
 import { WeatherService } from '../weather/weather.service';
+import { ActivityRankingResult } from './models/activity-ranking.model';
 
 const ACTIVITIES: SportActivity[] = [
   'surfing',
@@ -23,21 +20,26 @@ export class RankingService {
   async getRankings(
     latitude: number,
     longitude: number,
-  ): Promise<ActivityRanking[]> {
-    this.logger.log(`Getting rankings for lat: ${latitude}, lon: ${longitude}`);
-    const conditions = await this.weatherService.getWeatherConditions(
+  ): Promise<ActivityRankingResult[]> {
+    this.logger.log(
+      `Getting 7-day rankings for lat: ${latitude}, lon: ${longitude}`,
+    );
+    const dailyConditions = await this.weatherService.get7DayWeatherConditions(
       latitude,
       longitude,
     );
-    const rankings = ACTIVITIES.map((activity) => ({
-      activity,
-      score: this.score(activity, conditions),
-      conditions,
-    })).sort((a, b) => b.score - a.score);
-    this.logger.log(
-      `Rankings calculated for lat: ${latitude}, lon: ${longitude}`,
+    const allRankings = dailyConditions.flatMap((conditions) =>
+      ACTIVITIES.map((activity) => ({
+        day: conditions.day,
+        activity,
+        score: this.score(activity, conditions),
+        conditions,
+      })),
     );
-    return rankings;
+    this.logger.log(
+      `7-day rankings calculated for lat: ${latitude}, lon: ${longitude}`,
+    );
+    return allRankings;
   }
 
   private score(activity: SportActivity, w: WeatherCondition): number {
