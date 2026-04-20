@@ -1,3 +1,4 @@
+import { SparklesIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
 import { ActivityItem } from "./ActivityItem";
 
@@ -25,7 +26,14 @@ export function BestToday({
         score={score}
         reasoning={reasoning}
         isBest
-        icon={icon}
+        icon={
+          icon ?? (
+            <SparklesIcon
+              className="h-6 w-6 text-blue-500"
+              aria-hidden="true"
+            />
+          )
+        }
       />
     </section>
   );

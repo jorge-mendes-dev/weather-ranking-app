@@ -101,9 +101,9 @@ body {
   transition: background 0.2s;
 } */
 
-.button:hover, button:hover, .pill:hover {
+/* .button:hover, button:hover, .pill:hover {
   background: linear-gradient(120deg, var(--color-brand-light) 0%, #fff 100%);
-}
+} */
 
 input, textarea, select {
   border-radius: var(--radius-card);

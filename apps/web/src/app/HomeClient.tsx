@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CityCardList } from "./components/CityCardList";
 import { ForecastView } from "./components/ForecastView";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 import { SearchBar } from "./components/SearchBar";
 import { fetchWeather7Day, searchCities } from "./services/api";
 import {
@@ -151,7 +152,7 @@ export default function HomeClient() {
       </section>
       {/* Search Bar always visible */}
       <div
-        className={`w-full max-w-3xl mx-auto mb-6 flex justify-center transition-opacity duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className={`w-full max-w-4xl mx-auto mb-6 flex justify-center transition-opacity duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
         <SearchBar
           placeholder={t(
@@ -163,18 +164,14 @@ export default function HomeClient() {
       </div>
       {/* Empty state */}
       {appState === "IDLE" && (
-        <div className="w-full max-w-3xl mx-auto text-center text-gray-400 text-base mt-8 animate-fade-in">
+        <div className="w-full max-w-4xl mx-auto text-center text-gray-400 text-base mt-8 animate-fade-in">
           {t("common:empty_state", "Start typing a city to search")}
         </div>
       )}
       {/* State: SEARCHING - show city results */}
       {appState === "SEARCHING" && (
-        <div className="w-full max-w-3xl mx-auto animate-fade-in">
-          {searchLoading && (
-            <div className="text-brand mb-2 text-center">
-              {t("common:loading", "Loading...")}
-            </div>
-          )}
+        <div className="w-full max-w-4xl mx-auto animate-fade-in">
+          {searchLoading && <LoadingSpinner />}
           {searchError && (
             <div className="text-error mb-2 text-center">{searchError}</div>
           )}
@@ -186,14 +183,10 @@ export default function HomeClient() {
         </div>
       )}
       {/* State: LOADING_FORECAST */}
-      {appState === "LOADING_FORECAST" && (
-        <div className="w-full max-w-3xl mx-auto flex justify-center items-center min-h-30 animate-fade-in">
-          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-brand transition-all duration-300 ease-in-out shadow-lg hover:scale-110"></div>
-        </div>
-      )}
+      {appState === "LOADING_FORECAST" && <LoadingSpinner />}
       {/* State: READY - show forecast */}
       {appState === "READY" && forecast && (
-        <div className="w-full max-w-3xl mx-auto mt-8 animate-fade-in">
+        <div className="w-full max-w-4xl mx-auto mt-8 animate-fade-in">
           <ForecastView forecast={forecast} />
         </div>
       )}

@@ -49,6 +49,7 @@ npm run build
 npm run start
 ```
 
+
 ## Design System
 
 The UI follows the design guidelines documented in [DESIGN.md](DESIGN.md), inspired by Airtable's visual language:
@@ -57,6 +58,19 @@ The UI follows the design guidelines documented in [DESIGN.md](DESIGN.md), inspi
 - **Typography:** Haas font family with positive letter-spacing
 - **Radius:** 12px buttons, 16–24px cards
 - **Shadows:** Multi-layer blue-tinted shadow system
+
+## UI Previews
+
+Below are screenshots of the main UI assets:
+
+### Home
+![Home](src/assets/home.png)
+
+### Results
+![Results](src/assets/results.png)
+
+### Search
+![Search](src/assets/search.jpeg)
 
 ## Connecting to the API
 
