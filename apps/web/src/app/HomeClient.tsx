@@ -7,7 +7,7 @@ import { CityCardList } from "./components/CityCardList";
 import { ForecastView } from "./components/ForecastView";
 import { LoadingSpinner } from "./components/LoadingSpinner";
 import { SearchBar } from "./components/SearchBar";
-import { fetchWeather7Day, searchCities } from "./services/api";
+import { fetchRankings, searchCities } from "./services/api";
 import {
   processForecast,
   type ProcessedForecast,
@@ -75,55 +75,26 @@ export default function HomeClient() {
     setSearchLoading(false);
     setAppState("LOADING_FORECAST");
     try {
-      // Fetch weather7Day API
-      const weatherData = await fetchWeather7Day(city.latitude, city.longitude);
-      // Map weather data to DayForecast[] with mock activities
-      const dayForecasts: import("./utils/processForecast").DayForecast[] =
-        weatherData.map((day: any) => {
-          // Example scoring logic (replace with real logic as needed)
-          const activities = [
-            {
-              type: "OUTDOOR" as const,
-              score: Math.round(
-                Math.max(0, 10 - Math.abs(day.temperature - 20)) +
-                  (10 - day.precipitation * 10) +
-                  (10 - Math.abs(day.uvIndex - 6)),
-              ),
-              reasoning: `Good for outdoor activities. Temp: ${day.temperature}°C, Precip: ${day.precipitation}mm, UV: ${day.uvIndex}`,
-            },
-            {
-              type: "INDOOR" as const,
-              score: Math.round(
-                Math.max(0, 10 - Math.abs(day.temperature - 22)) +
-                  (day.precipitation > 0 ? 10 : 0) +
-                  (day.uvIndex > 7 ? 5 : 0),
-              ),
-              reasoning: `Better for indoor if rain or high UV. Temp: ${day.temperature}°C, Precip: ${day.precipitation}mm, UV: ${day.uvIndex}`,
-            },
-            {
-              type: "SURFING" as const,
-              score: Math.round(
-                (day.windSpeed > 10 ? 8 : 4) +
-                  (day.temperature > 18 ? 6 : 2) +
-                  (day.precipitation === 0 ? 6 : 2),
-              ),
-              reasoning: `Surfing score based on wind and temp. Wind: ${day.windSpeed}km/h, Temp: ${day.temperature}°C`,
-            },
-            {
-              type: "SKIING" as const,
-              score: Math.round(
-                (day.temperature < 5 ? 10 : 2) +
-                  (day.precipitation > 0 ? 6 : 2) +
-                  (day.windSpeed < 15 ? 6 : 2),
-              ),
-              reasoning: `Skiing score based on temp and snow. Temp: ${day.temperature}°C, Precip: ${day.precipitation}mm`,
-            },
-          ];
-          return {
-            date: day.day,
-            activities,
-          };
+      // Fetch rankings API
+      const rankings = await fetchRankings(city.latitude, city.longitude);
+      // Group rankings by day and map to DayForecast[]
+      const grouped: Record<
+        string,
+        import("./utils/processForecast").Activity[]
+      > = {};
+      for (const r of rankings) {
+        if (!grouped[r.day]) grouped[r.day] = [];
+        grouped[r.day].push({
+          type: r.activity.toUpperCase() as any, // assumes activity matches Activity type
+          score: r.score,
+          reasoning: `Temp: ${r.conditions.temperature}°C, Wind: ${r.conditions.windSpeed}km/h, Precip: ${r.conditions.precipitation}mm, UV: ${r.conditions.uvIndex}`,
         });
+      }
+      const dayForecasts: import("./utils/processForecast").DayForecast[] =
+        Object.entries(grouped).map(([date, activities]) => ({
+          date,
+          activities,
+        }));
       const processed = processForecast(dayForecasts);
       setForecast(processed);
       setAppState("READY");
@@ -187,7 +158,10 @@ export default function HomeClient() {
       {/* State: READY - show forecast */}
       {appState === "READY" && forecast && (
         <div className="w-full max-w-4xl mx-auto mt-8 animate-fade-in">
-          <ForecastView forecast={forecast} />
+          <ForecastView
+            forecast={forecast}
+            cityName={selectedCity?.name || ""}
+          />
         </div>
       )}
       {/* State: ERROR */}

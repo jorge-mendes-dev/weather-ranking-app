@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import type { ProcessedForecast } from "../utils/processForecast";
 import { BestDay } from "./BestDay";
 import { BestToday } from "./BestToday";
@@ -5,15 +6,27 @@ import { DayCard } from "./DayCard";
 
 interface ForecastViewProps {
   forecast: ProcessedForecast;
+  cityName?: string;
 }
 
 /**
  * Displays the main forecast view, including best today, best day, and daily cards.
  * @param {ForecastViewProps} props - The props for the component.
  */
-export function ForecastView({ forecast }: ForecastViewProps) {
+export function ForecastView({ forecast, cityName }: ForecastViewProps) {
+  const { t } = useTranslation();
   return (
     <section className="flex flex-col gap-8 w-full max-w-3xl mx-auto">
+      {cityName && (
+        <div className="w-full flex justify-center mb-2">
+          <h2
+            className="text-xl font-semibold text-green-500"
+            data-testid="selected-city"
+          >
+            - {cityName} -
+          </h2>
+        </div>
+      )}
       <BestToday
         activity={forecast.bestToday.type}
         score={forecast.bestToday.score}

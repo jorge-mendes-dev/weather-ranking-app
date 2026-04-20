@@ -1,8 +1,8 @@
-import type { ActivityRanking } from "@weather-app/types";
+import type { Ranking } from "@weather-app/types";
 import { ActivityRankingItem } from "./ActivityRankingItem";
 
 interface Props {
-  rankings: ActivityRanking[];
+  rankings: Ranking[];
   emojiMap: Record<string, string>;
   scoreColor: (score: number) => string;
 }

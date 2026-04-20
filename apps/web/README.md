@@ -1,4 +1,3 @@
-
 # Weather Ranking App — Web Frontend
 
 Next.js 15 frontend for ranking activities by weather, powered by a GraphQL API. Modern, responsive, and visually distinctive, this app helps users find the best activities for any city, any week.
@@ -77,6 +76,27 @@ You can configure this via environment variables:
 # .env.local
 NEXT_PUBLIC_API_URL=http://localhost:3000/graphql
 ```
+
+---
+
+## 🛡️ Environment Setup
+
+1. **Copy the example environment file:**
+   Copy and paste the following into a new file named `.env.local` in the project root:
+
+   ```env
+# .env.local (example)
+NEXT_PUBLIC_GRAPHQL_API_URL=https://your-graphql-api-url.com/graphql
+NEXT_PUBLIC_I18N_DEFAULT_LOCALE=en
+NEXT_PUBLIC_I18N_SUPPORTED_LOCALES=en,es,pt
+   ```
+
+   Or, run:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. **Edit the values** as needed for your environment (API URL, locales, etc).
 
 ---
 

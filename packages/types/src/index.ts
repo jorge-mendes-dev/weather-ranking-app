@@ -21,6 +21,13 @@ export interface City {
   longitude: number;
 };
 
+export interface WeatherCondition {
+  temperature: number; // Celsius
+  windSpeed: number;   // km/h
+  precipitation: number; // mm
+  uvIndex: number;
+}
+
 export interface Weather7Day {
   day: string;
   temperature: number;

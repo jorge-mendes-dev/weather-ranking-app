@@ -1,7 +1,6 @@
-import type { ActivityRanking } from "@weather-app/types";
-
+import type { Ranking } from "@weather-app/types";
 interface Props {
-  ranking: ActivityRanking;
+  ranking: Ranking;
   index: number;
   emojiMap: Record<string, string>;
   scoreColor: (score: number) => string;
