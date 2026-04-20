@@ -10,6 +10,10 @@ interface SearchBarProps {
 
 import { SearchIcon } from "./icons/SearchIcon";
 
+/**
+ * Search bar component with input and submit button.
+ * @param {SearchBarProps} props - The props for the component.
+ */
 export function SearchBar({
   placeholder = "Search...",
   onSearch,

@@ -3,6 +3,10 @@ interface StatProps {
   value: string;
 }
 
+/**
+ * Displays a single stat with label and value.
+ * @param {StatProps} props - The props for the component.
+ */
 export function Stat({ label, value }: StatProps) {
   return (
     <div className="flex flex-col">

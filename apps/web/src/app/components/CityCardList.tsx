@@ -10,6 +10,10 @@ interface CityCardListProps {
   loading?: boolean;
 }
 
+/**
+ * Renders a list of city cards for selection.
+ * @param {CityCardListProps} props - The props for the component.
+ */
 export function CityCardList({
   cities,
   onSelect,

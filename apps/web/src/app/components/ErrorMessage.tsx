@@ -4,6 +4,10 @@ interface ErrorMessageProps {
   children: React.ReactNode;
 }
 
+/**
+ * Displays an error message with optional children and a static API required note.
+ * @param {ErrorMessageProps} props - The props for the component.
+ */
 export function ErrorMessage({ children }: ErrorMessageProps) {
   const { t } = useTranslation();
   return (

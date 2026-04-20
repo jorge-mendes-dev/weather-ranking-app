@@ -7,6 +7,10 @@ interface Props {
   scoreColor: (score: number) => string;
 }
 
+/**
+ * Renders a single activity ranking item in a list.
+ * @param {Props} props - The props for the component.
+ */
 export function ActivityRankingItem({
   ranking,
   index,

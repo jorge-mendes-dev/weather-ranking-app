@@ -3,6 +3,9 @@
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "./LanguageSelector";
 
+/**
+ * Main navigation bar with app title and language selector.
+ */
 export function Navbar() {
   const { t } = useTranslation();
   return (

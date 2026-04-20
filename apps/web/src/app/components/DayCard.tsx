@@ -15,6 +15,10 @@ interface DayCardProps {
   icon?: React.ReactNode;
 }
 
+/**
+ * Renders a card for a single day, showing the best activity and other activities.
+ * @param {DayCardProps} props - The props for the component.
+ */
 export function DayCard({
   date,
   weatherLabel,

@@ -7,6 +7,10 @@ interface Props {
   conditions: WeatherCondition;
 }
 
+/**
+ * Displays a strip of weather conditions as stats.
+ * @param {Props} props - The props for the component.
+ */
 export function ConditionsStrip({ conditions }: Props) {
   const { t } = useTranslation();
   return (

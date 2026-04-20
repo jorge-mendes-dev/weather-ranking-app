@@ -19,6 +19,10 @@ const activityIcons: Record<string, React.ReactNode> = {
   // results: <ResultsIcon className="w-6 h-6 text-yellow-400" />,
 };
 
+/**
+ * Renders an activity item with score, reasoning, and optional icon.
+ * @param {ActivityItemProps} props - The props for the component.
+ */
 export function ActivityItem({
   activity,
   score,

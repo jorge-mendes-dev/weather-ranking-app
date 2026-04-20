@@ -8,6 +8,9 @@ const LANGS = [
   { code: "es", label: "Español" },
 ];
 
+/**
+ * Language selector dropdown for switching app language.
+ */
 export function LanguageSelector() {
   const { i18n: i18next } = useTranslation();
   const current = i18next.language || "en";

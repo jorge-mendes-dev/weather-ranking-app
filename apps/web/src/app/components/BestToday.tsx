@@ -9,6 +9,10 @@ interface BestTodayProps {
   icon?: React.ReactNode;
 }
 
+/**
+ * Displays the best activity for today with score and reasoning.
+ * @param {BestTodayProps} props - The props for the component.
+ */
 export function BestToday({
   activity,
   score,

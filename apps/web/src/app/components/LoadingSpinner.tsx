@@ -1,5 +1,8 @@
 "use client";
 
+/**
+ * Animated loading spinner for indicating loading state.
+ */
 export function LoadingSpinner() {
   return (
     <div className="w-full max-w-4xl mx-auto flex justify-center items-center min-h-30 animate-fade-in">

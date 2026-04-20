@@ -7,6 +7,10 @@ interface ForecastViewProps {
   forecast: ProcessedForecast;
 }
 
+/**
+ * Displays the main forecast view, including best today, best day, and daily cards.
+ * @param {ForecastViewProps} props - The props for the component.
+ */
 export function ForecastView({ forecast }: ForecastViewProps) {
   return (
     <section className="flex flex-col gap-8 w-full max-w-3xl mx-auto">

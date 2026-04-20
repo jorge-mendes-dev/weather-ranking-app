@@ -7,6 +7,10 @@ interface BestDayProps {
   score: number;
 }
 
+/**
+ * Displays the best day of the week for a given activity and score.
+ * @param {BestDayProps} props - The props for the component.
+ */
 export function BestDay({ date, activity, score }: BestDayProps) {
   const { t } = useTranslation();
   return (

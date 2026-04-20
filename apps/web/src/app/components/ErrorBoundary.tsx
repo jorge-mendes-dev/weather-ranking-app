@@ -21,6 +21,11 @@ function ErrorBoundaryMessage() {
   );
 }
 
+/**
+ * Error boundary component to catch and display errors in the React tree.
+ * @class
+ * @extends React.Component<ErrorBoundaryProps, ErrorBoundaryState>
+ */
 export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
