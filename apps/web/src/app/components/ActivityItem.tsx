@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ReasoningStatStrip } from "./ReasoningStatStrip";
 import { SearchIcon } from "./SearchIcon";
 
 interface ActivityItemProps {
@@ -106,12 +107,7 @@ export function ActivityItem({
         className={`overflow-hidden transition-all duration-300 px-5 ${expanded ? "max-h-40 py-2" : "max-h-0 py-0"}`}
         aria-hidden={!expanded}
       >
-        {reasoning && (
-          <div className="text-xs text-gray-700 font-body whitespace-pre-line">
-            {reasoning}
-          </div>
-        )}
-        {/* Add more details here if needed */}
+        {reasoning && <ReasoningStatStrip reasoning={reasoning} />}
       </div>
     </div>
   );
