@@ -21,8 +21,8 @@ export function BestToday({
 }: BestTodayProps) {
   const { t } = useTranslation();
   return (
-    <section className="bg-white border border-gray-200 rounded-lg p-4 font-display transition-all duration-200 hover:shadow-lg hover:bg-gray-50 hover:-translate-y-1 hover:scale-[1.02] focus:shadow-xl focus:border-blue-300 mb-4">
-      <h2 className="text-xl font-semibold mb-2 tracking-tight text-gray-900">
+    <section className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display shadow-[0_4px_32px_0_rgba(27,97,201,0.07)] transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:-translate-y-1 hover:scale-[1.025] focus:shadow-xl focus:border-blue-400 mb-6">
+      <h2 className="text-xl font-bold mb-3 tracking-tight text-color-text drop-shadow-sm">
         {t("best_activity_today")}
       </h2>
       <ActivityItem
@@ -33,7 +33,7 @@ export function BestToday({
         icon={
           icon ?? (
             <SparklesIcon
-              className="h-6 w-6 text-blue-500"
+              className="h-6 w-6 text-blue-500 drop-shadow-md"
               aria-hidden="true"
             />
           )

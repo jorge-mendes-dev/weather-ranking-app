@@ -13,7 +13,7 @@ interface Props {
  */
 export function ActivityRankingList({ rankings, emojiMap, scoreColor }: Props) {
   return (
-    <ol className="flex flex-col gap-3 list-none p-0 m-0 transition-all duration-200">
+    <ol className="flex flex-col gap-4 list-none p-0 m-0 transition-all duration-300">
       {rankings.map((r, i) => (
         <ActivityRankingItem
           key={r.activity}

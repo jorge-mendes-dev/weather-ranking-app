@@ -15,7 +15,7 @@ interface ErrorBoundaryState {
 function ErrorBoundaryMessage() {
   const { t } = useTranslation();
   return (
-    <div className="text-red-500 font-display font-semibold mt-8 container mx-auto text-center">
+    <div className="text-red-600 font-display text-lg font-bold mt-10 text-center bg-red-50/60 border border-red-200 rounded-xl px-6 py-4 shadow-sm">
       <p>{t("error_boundary.something_went_wrong")}</p>
     </div>
   );

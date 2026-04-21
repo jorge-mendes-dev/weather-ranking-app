@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Brand & Primary
         navy: '#181d26',
         'airtable-blue': '#1b61c9',
         spotlight: 'rgba(249,252,255,0.97)',
@@ -33,6 +34,7 @@ module.exports = {
         'text-muted': 'var(--gray-400, #888888)',
         'border-brand': 'var(--color-brand, #18E299)',
         'border-border': 'var(--border-subtle, rgba(0,0,0,0.05))',
+        'border-medium': 'var(--border-medium, rgba(0,0,0,0.08))', // Added for interactive borders
         'border-error': 'var(--color-error, #d45656)',
         'border-card': 'var(--border-subtle, rgba(0,0,0,0.05))',
         'border-section': 'var(--border-subtle, rgba(0,0,0,0.05))',
@@ -44,6 +46,11 @@ module.exports = {
         'bg-info': 'var(--color-info, #3772cf)',
         'bg-warn': 'var(--color-warn, #c37d0d)',
         'bg-muted': 'var(--gray-100, #f5f5f5)',
+      },
+      boxShadow: {
+        // Subtle shadows matching design system
+        'card': '0px 2px 4px 0px rgba(0,0,0,0.03)',
+        'button': '0px 1px 2px 0px rgba(0,0,0,0.06)',
       },
         safelist: [
           'card',
@@ -72,6 +79,21 @@ module.exports = {
           'bg-muted',
         ],
       fontFamily: {
+        display: [
+          'Inter',
+          'Inter Fallback',
+          'system-ui',
+          '-apple-system',
+          'sans-serif',
+        ],
+        mono: [
+          'Geist Mono',
+          'Geist Mono Fallback',
+          'ui-monospace',
+          'SFMono-Regular',
+          'monospace',
+        ],
+        // Legacy/optional:
         haas: [
           'Haas',
           '-apple-system',

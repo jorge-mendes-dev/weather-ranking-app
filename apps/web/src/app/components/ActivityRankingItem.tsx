@@ -18,16 +18,16 @@ export function ActivityRankingItem({
 }: Props) {
   const { t } = require("react-i18next");
   return (
-    <li className="flex items-center gap-4 bg-white border border-gray-200 rounded-lg p-4 font-display transition-all duration-200 hover:shadow-lg hover:bg-gray-50 hover:-translate-y-1 hover:scale-[1.01] focus:shadow-xl focus:border-blue-300">
-      <span className="text-blue-600 font-semibold min-w-6 text-base">
+    <li className="flex items-center gap-5 bg-white/95 border border-border rounded-xl p-5 font-display transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:-translate-y-1 hover:scale-[1.015] focus:shadow-xl focus:border-blue-400">
+      <span className="text-blue-600 font-bold min-w-7 text-lg drop-shadow-sm">
         {index + 1}
       </span>
-      <span className="text-xl">{emojiMap[ranking.activity] ?? "🏅"}</span>
-      <span className="flex-1 capitalize text-base font-medium tracking-tight text-gray-800">
+      <span className="text-2xl">{emojiMap[ranking.activity] ?? "🏅"}</span>
+      <span className="flex-1 capitalize text-base font-semibold tracking-tight text-color-text">
         {ranking.activity}
       </span>
       <span
-        className="font-bold text-base min-w-10 text-right text-gray-700"
+        className="font-bold min-w-10 text-right text-blue-700 bg-blue-50/60 rounded px-2 py-0.5 shadow-sm"
         style={{ color: scoreColor(ranking.score) }}
       >
         {ranking.score}

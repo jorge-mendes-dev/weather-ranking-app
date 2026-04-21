@@ -11,10 +11,10 @@ interface ErrorMessageProps {
 export function ErrorMessage({ children }: ErrorMessageProps) {
   const { t } = useTranslation();
   return (
-    <div className="text-red-500 font-display text-base font-semibold mt-8 text-center">
+    <div className="text-red-600 font-display text-lg font-bold mt-10 text-center bg-red-50/60 border border-red-200 rounded-xl px-6 py-4 shadow-sm">
       {children}
       <br />
-      <span className="text-xs text-gray-400">
+      <span className="text-xs text-red-400 font-medium">
         {t("error_message.api_required")}
       </span>
     </div>

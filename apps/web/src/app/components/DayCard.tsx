@@ -29,12 +29,19 @@ export function DayCard({
   icon,
 }: DayCardProps) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 font-display transition-all duration-200 hover:shadow-lg hover:bg-gray-50 hover:-translate-y-1 hover:scale-[1.02] focus:shadow-xl focus:border-blue-300 mb-6">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-base font-semibold text-gray-900">{date}</span>
-        <CloudIcon className="h-5 w-5 text-blue-300" aria-hidden="true" />
+    <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display shadow-[0_4px_32px_0_rgba(27,97,201,0.07)] transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:-translate-y-1 hover:scale-[1.025] focus:shadow-xl focus:border-blue-400 mb-8">
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-lg font-bold text-color-text tracking-tight leading-tight drop-shadow-sm">
+          {date}
+        </span>
+        <CloudIcon
+          className="h-5 w-5 text-blue-400 opacity-80"
+          aria-hidden="true"
+        />
         {weatherLabel && (
-          <span className="ml-2 text-sm text-gray-500">{weatherLabel}</span>
+          <span className="ml-2 text-sm text-blue-600/80 font-medium tracking-wide">
+            {weatherLabel}
+          </span>
         )}
       </div>
       <ActivityItem
@@ -45,13 +52,13 @@ export function DayCard({
         icon={
           icon ?? (
             <SparklesIcon
-              className="h-5 w-5 text-blue-500"
+              className="h-5 w-5 text-blue-500 drop-shadow-md"
               aria-hidden="true"
             />
           )
         }
       />
-      <div className="mt-2 flex flex-col gap-1">
+      <div className="mt-4 flex flex-col gap-2">
         {activities
           .filter((a) => a.type !== bestActivity)
           .map((a) => (
@@ -62,7 +69,7 @@ export function DayCard({
               reasoning={a.reasoning}
               icon={
                 <SparklesIcon
-                  className="h-4 w-4 text-gray-300"
+                  className="h-4 w-4 text-blue-200 opacity-70"
                   aria-hidden="true"
                 />
               }

@@ -9,14 +9,14 @@ import { LanguageSelector } from "./LanguageSelector";
 export function Navbar() {
   const { t } = useTranslation();
   return (
-    <nav className="sticky top-0 z-30 w-full flex items-center justify-between px-4 md:px-8 h-14 border-b border-gray-200 bg-white/80 backdrop-blur font-display">
+    <nav className="sticky top-0 z-30 w-full flex items-center justify-between px-6 md:px-12 h-16 border-b border-border bg-white/90 backdrop-blur font-display shadow-[0_2px_16px_0_rgba(27,97,201,0.04)]">
       <a
         href="/"
-        className="text-lg md:text-xl font-semibold tracking-tight text-color-text select-none"
+        className="text-xl md:text-2xl font-bold tracking-tight text-color-text select-none drop-shadow-sm hover:text-blue-700 transition-colors duration-200"
       >
         {t("navbar.title")}
       </a>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <LanguageSelector />
       </div>
     </nav>

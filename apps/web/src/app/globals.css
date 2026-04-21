@@ -2,28 +2,43 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #ffffff;
-  --color-text: #0d0d0d;
-  --color-brand: #18E299;
-  --color-brand-light: #d4fae8;
-  --color-brand-deep: #0fa76e;
-  --color-warn: #c37d0d;
-  --color-info: #3772cf;
-  --color-error: #d45656;
-  --gray-900: #0d0d0d;
-  --gray-700: #333333;
-  --gray-500: #666666;
-  --gray-400: #888888;
-  --gray-200: #e5e5e5;
-  --gray-100: #f5f5f5;
-  --gray-50: #fafafa;
-  --border-subtle: rgba(0,0,0,0.05);
-  --radius-card: 16px;
-  --radius-featured: 24px;
-  --radius-pill: 9999px;
-  --spacing-base: 8px;
-  --font-display: 'Inter', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  /* === Color Palette === */
+  --color-bg: #ffffff; /* Pure White: background, cards */
+  --color-text: #0d0d0d; /* Near Black: primary text, headings */
+  --color-brand: #18E299; /* Brand Green: accent, CTAs, focus */
+  --color-brand-light: #d4fae8; /* Brand Green Light: badges, hovers */
+  --color-brand-deep: #0fa76e; /* Brand Green Deep: dark accent */
+  --color-warn: #c37d0d; /* Warm Amber: warnings */
+  --color-info: #3772cf; /* Soft Blue: info tags */
+  --color-error: #d45656; /* Error Red: errors */
+
+  /* Neutral Scale */
+  --gray-900: #0d0d0d; /* Headings, nav */
+  --gray-700: #333333; /* Secondary text */
+  --gray-500: #666666; /* Tertiary text */
+  --gray-400: #888888; /* Placeholders, disabled */
+  --gray-200: #e5e5e5; /* Borders, dividers */
+  --gray-100: #f5f5f5; /* Subtle backgrounds */
+  --gray-50: #fafafa;  /* Near-white tint */
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(0,0,0,0.05); /* 5% black: card borders */
+  --border-medium: rgba(0,0,0,0.08); /* 8% black: interactive borders */
+  --card-shadow: 0px 2px 4px rgba(0,0,0,0.03); /* Card shadow */
+  --button-shadow: 0px 1px 2px rgba(0,0,0,0.06); /* Button shadow */
+
+  /* Radii */
+  --radius-card: 16px;      /* Card corners */
+  --radius-featured: 24px;  /* Featured card corners */
+  --radius-pill: 9999px;    /* Full pill */
+
+  /* Spacing */
+  --spacing-base: 8px;      /* Base spacing */
+  --section-padding: 48px;  /* Section vertical padding */
+
+  /* Typography */
+  --font-display: 'Inter', Inter, 'Inter Fallback', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, SFMono-Regular, monospace;
 }
 
 html {
@@ -118,7 +133,7 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: var(--color-brand);
+  /* border-color: var(--color-brand); */
   box-shadow: 0 0 0 2px var(--color-brand-light);
 }
 

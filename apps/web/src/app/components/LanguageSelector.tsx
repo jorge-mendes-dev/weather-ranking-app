@@ -21,7 +21,7 @@ export function LanguageSelector() {
 
   return (
     <select
-      className="ml-2 px-2 py-1 rounded border border-border border-rounded bg-white text-sm"
+      className="ml-2 px-3 py-1.5 rounded-lg border border-border bg-white text-sm font-medium shadow-sm focus:ring-2 focus:ring-blue-200 transition-all duration-200"
       value={current}
       onChange={handleChange}
       aria-label="Select language"

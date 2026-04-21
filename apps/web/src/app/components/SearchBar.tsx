@@ -34,7 +34,7 @@ export function SearchBar({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-2 w-full max-w-xl bg-white border border-gray-300 rounded-lg shadow-sm px-3 py-2 transition"
+      className="flex items-center gap-2 w-full max-w-xl bg-white border border-gray-100 rounded-lg shadow px-3 py-2 transition"
       role="search"
     >
       {icon || (
@@ -53,7 +53,7 @@ export function SearchBar({
       />
       <button
         type="submit"
-        className="ml-2 px-5 h-10 bg-green-600 text-white rounded-lg font-medium text-base shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+        className="ml-2 px-5 h-10 bg-blue-600 text-white rounded-lg font-medium text-base shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
         aria-label={t("searchbar.aria_label")}
       >
         {t("searchbar.button")}
