@@ -13,7 +13,8 @@ async function bootstrap() {
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
   // Centralized error handling
-  const { GlobalExceptionFilter } = await import('./common/filters/global-exception.filter');
+  const { GlobalExceptionFilter } =
+    await import('./common/filters/global-exception.filter');
   app.useGlobalFilters(new GlobalExceptionFilter());
   await app.listen(process.env.PORT ?? 3000);
 }

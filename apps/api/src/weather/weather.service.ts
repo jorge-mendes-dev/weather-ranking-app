@@ -43,7 +43,7 @@ export class WeatherService {
       `Fetching 7-day weather for lat: ${latitude}, lon: ${longitude}`,
     );
     const baseUrl = process.env.OPEN_METEO_BASE_URL
-      ? process.env.OPEN_METEO_BASE_URL + 'forecast'
+      ? process.env.OPEN_METEO_BASE_URL
       : 'https://api.open-meteo.com/v1/forecast';
     try {
       const response = await firstValueFrom(
@@ -109,7 +109,7 @@ export class WeatherService {
   ): Promise<WeatherCondition> {
     this.logger.log(`Fetching weather for lat: ${latitude}, lon: ${longitude}`);
     const baseUrl = process.env.OPEN_METEO_BASE_URL
-      ? process.env.OPEN_METEO_BASE_URL + 'forecast'
+      ? process.env.OPEN_METEO_BASE_URL
       : 'https://api.open-meteo.com/v1/forecast';
     try {
       const response = await firstValueFrom(
