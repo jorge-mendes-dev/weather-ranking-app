@@ -39,6 +39,7 @@ export function SearchBar({
 
   const { t } = useTranslation();
   const showClear = value.length > 0 && !!onClear;
+  const isSearchEnabled = value.trim().length > 0;
   return (
     <form
       onSubmit={handleSubmit}
@@ -59,7 +60,16 @@ export function SearchBar({
         aria-label={placeholder}
         autoFocus
       />
-      {showClear ? (
+
+      <button
+        type="submit"
+        className={`ml-2 px-5 h-10 bg-blue-600 text-white rounded-lg font-medium text-base shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition${!isSearchEnabled ? " opacity-50 cursor-not-allowed" : ""}`}
+        aria-label={t("searchbar.aria_label")}
+        disabled={!isSearchEnabled}
+      >
+        {t("searchbar.button")}
+      </button>
+      {showClear && (
         <button
           type="button"
           onClick={handleClear}
@@ -67,14 +77,6 @@ export function SearchBar({
           aria-label={t("searchbar.clear_aria_label")}
         >
           {t("searchbar.clear_button")}
-        </button>
-      ) : (
-        <button
-          type="submit"
-          className="ml-2 px-5 h-10 bg-blue-600 text-white rounded-lg font-medium text-base shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-          aria-label={t("searchbar.aria_label")}
-        >
-          {t("searchbar.button")}
         </button>
       )}
     </form>
