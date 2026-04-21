@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SearchIcon } from "./icons/SearchIcon";
+import { SearchIcon } from "./SearchIcon";
 
 interface ActivityItemProps {
   activity: string;

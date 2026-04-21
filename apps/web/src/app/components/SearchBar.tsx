@@ -8,7 +8,7 @@ interface SearchBarProps {
   icon?: React.ReactNode;
 }
 
-import { SearchIcon } from "./icons/SearchIcon";
+import { SearchIcon } from "./SearchIcon";
 
 /**
  * Search bar component with input and submit button.
