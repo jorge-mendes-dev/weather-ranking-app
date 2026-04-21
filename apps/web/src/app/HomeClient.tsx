@@ -1,4 +1,5 @@
 "use client";
+import { GoToTopButton } from "./components/GoToTopButton";
 
 import type { City } from "@weather-app/types";
 import React, { useState } from "react";
@@ -35,6 +36,7 @@ export default function HomeClient() {
   React.useEffect(() => {
     setMounted(true);
   }, []);
+  // GoToTopButton: scrolls smoothly to top when clicked
 
   // Helper: is idle (no results, no forecast)
   const isIdle =
@@ -148,7 +150,7 @@ export default function HomeClient() {
       )}
       {/* State: SEARCHING - show city results */}
       {appState === "SEARCHING" && (
-        <div className="w-full max-w-4xl mx-auto animate-fade-in">
+        <div className="w-full max-w-4xl mx-auto animate-fade-in relative">
           {searchLoading && <LoadingSpinner />}
           {searchError && (
             <div className="text-error mb-2 text-center">{searchError}</div>
@@ -158,19 +160,25 @@ export default function HomeClient() {
             onSelect={handleSelectCity}
             loading={searchLoading}
           />
+          {/* Go to Top Button */}
+          <GoToTopButton />
         </div>
       )}
       {/* State: LOADING_FORECAST */}
       {appState === "LOADING_FORECAST" && <LoadingSpinner />}
+
       {/* State: READY - show forecast */}
       {appState === "READY" && forecast && (
-        <div className="w-full max-w-4xl mx-auto mt-8 animate-fade-in">
+        <div className="w-full max-w-4xl mx-auto mt-8 animate-fade-in relative">
           <ForecastView
             forecast={forecast}
             cityName={selectedCity?.name || ""}
           />
+          {/* Go to Top Button */}
+          <GoToTopButton />
         </div>
       )}
+
       {/* State: ERROR */}
       {appState === "ERROR" && (
         <div className="text-error mt-6 animate-fade-in text-center">
