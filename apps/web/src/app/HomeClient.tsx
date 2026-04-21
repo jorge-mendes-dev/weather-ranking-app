@@ -36,6 +36,10 @@ export default function HomeClient() {
     setMounted(true);
   }, []);
 
+  // Helper: is idle (no results, no forecast)
+  const isIdle =
+    appState === "IDLE" && !searchResults.length && !selectedCity && !forecast;
+
   // Search handler
   async function handleSearch(query: string) {
     if (!query) {
@@ -106,10 +110,13 @@ export default function HomeClient() {
 
   // UI rendering by state
   return (
-    <div className="flex flex-col items-center w-full mx-auto justify-center">
+    <div
+      className={`flex flex-col items-center w-full mx-auto min-h-[60vh] ${isIdle ? "flex-grow justify-center" : "pt-8"}`}
+      style={isIdle ? { minHeight: "60vh" } : {}}
+    >
       {/* Hero Section */}
       <section
-        className={`w-full flex flex-col items-center justify-center text-center gap-3 mt-8 mb-4 transition-opacity duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className={`w-full flex flex-col items-center justify-center text-center gap-3 ${isIdle ? "mb-4" : "mt-0 mb-4"} transition-opacity duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
         <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-1">
           {t("common:hero_title", "Find the best activities based on weather")}
@@ -123,7 +130,7 @@ export default function HomeClient() {
       </section>
       {/* Search Bar always visible */}
       <div
-        className={`w-full max-w-4xl mx-auto mb-6 flex justify-center transition-opacity duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className={`w-full max-w-4xl mx-auto mb-6 flex justify-center transition-opacity duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${isIdle ? "" : "mt-0"}`}
       >
         <SearchBar
           placeholder={t(

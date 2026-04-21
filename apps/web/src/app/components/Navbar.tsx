@@ -23,7 +23,7 @@ export function Navbar() {
       >
         {t("navbar.title")}
       </a>
-      <div className="flex items-center gap-2 bg-(--gray-50) px-3 py-1">
+      <div className="flex items-center gap-2 px-3 py-1">
         <LanguageSelector />
       </div>
     </nav>
