@@ -1,4 +1,6 @@
 import { CloudIcon, SparklesIcon } from "@heroicons/react/24/outline";
+
+import { formatDate } from "../utils/formatDate";
 import { ActivityItem } from "./ActivityItem";
 
 interface DayCardProps {
@@ -28,11 +30,13 @@ export function DayCard({
   activities,
   icon,
 }: DayCardProps) {
+  const formattedDate = formatDate(date);
+
   return (
     <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein mb-8">
       <div className="flex items-center gap-3 mb-3">
         <span className="text-lg font-bold text-color-text tracking-tight leading-tight drop-shadow-sm">
-          {date}
+          {formattedDate}
         </span>
         <CloudIcon
           className="h-5 w-5 text-blue-400 opacity-80"

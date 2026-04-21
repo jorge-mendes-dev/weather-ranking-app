@@ -1,5 +1,6 @@
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from "react-i18next";
+import { formatDate } from "../utils/formatDate";
 
 interface BestDayProps {
   date: string;
@@ -13,6 +14,8 @@ interface BestDayProps {
  */
 export function BestDay({ date, activity, score }: BestDayProps) {
   const { t } = useTranslation();
+  const formattedDate = formatDate(date);
+
   return (
     <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display flex flex-col gap-3 emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein mb-6">
       <div className="text-base font-bold text-color-text mb-1 flex items-center gap-2 drop-shadow-sm">
@@ -24,7 +27,7 @@ export function BestDay({ date, activity, score }: BestDayProps) {
       </div>
       <div className="flex items-center gap-3">
         <span className="font-bold text-blue-700 mr-2 tracking-tight leading-tight">
-          {date}
+          {formattedDate}
         </span>
         <span className="capitalize font-semibold text-gray-800">
           {activity}
