@@ -31,6 +31,16 @@ A monorepo application that ranks sport activities (surfing, skiing, hiking, cyc
 npm install
 ```
 
+### 2. Installing a library only for the web app
+
+To add a dependency only to the web frontend (not the whole monorepo), run this from the root:
+
+```bash
+npm install <package-name> --workspace apps/web
+```
+
+This will add the package to `apps/web/package.json` only.
+
 ### 2. Run all apps in development mode
 
 ```bash
@@ -47,6 +57,16 @@ cd apps/api && npm run start:dev
 
 # Frontend only
 cd apps/web && npm run dev
+```
+
+You can also run scripts from the root using the workspace flag:
+
+```bash
+# Start only the web frontend from root
+npm run dev --workspace apps/web
+
+# Start only the API from root
+npm run start:dev --workspace apps/api
 ```
 
 ## Monorepo Structure
