@@ -25,7 +25,7 @@ export function BestDay({ date, activity, score }: BestDayProps) {
         />
         {t("best_day_this_week")}
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex justify-center items-center gap-3">
         <span className="font-bold text-blue-700 mr-2 tracking-tight leading-tight">
           {formattedDate}
         </span>

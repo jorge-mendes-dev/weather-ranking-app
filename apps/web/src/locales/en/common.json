@@ -1,4 +1,7 @@
 {
+  "footer": {
+    "created_by": "Created by <0>Jorge Mendes</0>"
+  },
   "navbar": {
     "title": "Weather Ranking"
   },

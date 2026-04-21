@@ -1,14 +1,15 @@
 "use client";
+import { Trans, useTranslation } from "react-i18next";
 
 /**
  * Footer component for app-wide usage.
  * Displays creator info with a link, styled per design system.
  */
 export function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="w-full border-t border-[rgba(0,0,0,0.05)] bg-white py-6 flex items-center justify-center text-gray-700 text-sm font-medium tracking-wide select-none emil-fadein">
-      <span>
-        Created by{" "}
+      <Trans i18nKey="footer.created_by">
         <a
           href="https://jorgemendes.com.br/"
           target="_blank"
@@ -17,7 +18,7 @@ export function Footer() {
         >
           Jorge Mendes
         </a>
-      </span>
+      </Trans>
     </footer>
   );
 }

@@ -1,4 +1,7 @@
 {
+  "footer": {
+    "created_by": "Criado por <0>Jorge Mendes</0>"
+  },
   "navbar": {
     "title": "Ranking do Clima"
   },
