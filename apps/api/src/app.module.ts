@@ -1,6 +1,8 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+
+import { AppController } from './app.controller';
 import { CityModule } from './city/city.module';
 import { RankingModule } from './ranking/ranking.module';
 import { WeatherModule } from './weather/weather.module';
@@ -15,5 +17,6 @@ import { WeatherModule } from './weather/weather.module';
     CityModule,
     RankingModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
