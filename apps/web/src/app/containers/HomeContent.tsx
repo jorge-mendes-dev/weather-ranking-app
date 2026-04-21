@@ -50,6 +50,7 @@ export function HomeContent({
             "Start typing a city to search",
           )}
           onSearch={handleSearch}
+          onClear={() => handleSearch("")}
         />
       </div>
       {/* Empty state */}

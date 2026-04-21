@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 interface SearchBarProps {
   placeholder?: string;
   onSearch: (value: string) => void;
+  onClear?: () => void;
   icon?: React.ReactNode;
 }
 
@@ -17,6 +18,7 @@ import { SearchIcon } from "./SearchIcon";
 export function SearchBar({
   placeholder = "Search...",
   onSearch,
+  onClear,
   icon,
 }: SearchBarProps) {
   const [value, setValue] = useState("");
@@ -30,7 +32,13 @@ export function SearchBar({
     onSearch(value.trim());
   }
 
+  function handleClear() {
+    setValue("");
+    onClear?.();
+  }
+
   const { t } = useTranslation();
+  const showClear = value.length > 0 && !!onClear;
   return (
     <form
       onSubmit={handleSubmit}
@@ -51,13 +59,24 @@ export function SearchBar({
         aria-label={placeholder}
         autoFocus
       />
-      <button
-        type="submit"
-        className="ml-2 px-5 h-10 bg-blue-600 text-white rounded-lg font-medium text-base shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-        aria-label={t("searchbar.aria_label")}
-      >
-        {t("searchbar.button")}
-      </button>
+      {showClear ? (
+        <button
+          type="button"
+          onClick={handleClear}
+          className="ml-2 px-5 h-10 bg-red-100 text-red-700 rounded-lg font-medium text-base shadow-sm hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+          aria-label={t("searchbar.clear_aria_label")}
+        >
+          {t("searchbar.clear_button")}
+        </button>
+      ) : (
+        <button
+          type="submit"
+          className="ml-2 px-5 h-10 bg-blue-600 text-white rounded-lg font-medium text-base shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+          aria-label={t("searchbar.aria_label")}
+        >
+          {t("searchbar.button")}
+        </button>
+      )}
     </form>
   );
 }
