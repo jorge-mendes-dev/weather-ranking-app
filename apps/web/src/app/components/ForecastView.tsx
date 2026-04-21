@@ -20,7 +20,7 @@ export function ForecastView({ forecast, cityName }: ForecastViewProps) {
       {cityName && (
         <div className="w-full flex justify-center mb-2">
           <h2
-            className="text-xl font-semibold text-green-500"
+            className="text-xl font-semibold text-blue-600"
             data-testid="selected-city"
           >
             <section className="flex flex-col gap-10 w-full max-w-3xl mx-auto px-2 md:px-0">

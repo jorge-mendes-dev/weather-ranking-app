@@ -29,7 +29,7 @@ export function DayCard({
   icon,
 }: DayCardProps) {
   return (
-    <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display shadow-[0_4px_32px_0_rgba(27,97,201,0.07)] transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:-translate-y-1 hover:scale-[1.025] focus:shadow-xl focus:border-blue-400 mb-8">
+    <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein mb-8">
       <div className="flex items-center gap-3 mb-3">
         <span className="text-lg font-bold text-color-text tracking-tight leading-tight drop-shadow-sm">
           {date}

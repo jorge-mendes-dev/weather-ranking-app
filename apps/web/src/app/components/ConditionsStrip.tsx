@@ -14,7 +14,7 @@ interface Props {
 export function ConditionsStrip({ conditions }: Props) {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-wrap gap-10 bg-blue-50/40 border border-border rounded-2xl px-8 py-5 mb-10 font-display transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/60">
+    <div className="flex flex-wrap gap-10 bg-blue-50/40 border border-border rounded-2xl px-8 py-5 mb-10 font-display emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein">
       <Stat label={t("temp")} value={`${conditions.temperature} °C`} />
       <Stat label={t("wind")} value={`${conditions.windSpeed} km/h`} />
       <Stat label={t("rain")} value={`${conditions.precipitation} mm`} />

@@ -14,7 +14,7 @@ interface BestDayProps {
 export function BestDay({ date, activity, score }: BestDayProps) {
   const { t } = useTranslation();
   return (
-    <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display flex flex-col gap-3 shadow-[0_4px_32px_0_rgba(27,97,201,0.07)] transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:-translate-y-1 hover:scale-[1.025] focus:shadow-xl focus:border-blue-400 mb-6">
+    <div className="bg-white/95 border border-gray-300 rounded-2xl p-6 font-display flex flex-col gap-3 emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein mb-6">
       <div className="text-base font-bold text-color-text mb-1 flex items-center gap-2 drop-shadow-sm">
         <CalendarDaysIcon
           className="h-5 w-5 text-blue-400 mr-1 opacity-80"

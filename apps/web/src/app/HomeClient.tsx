@@ -111,7 +111,7 @@ export default function HomeClient() {
   // UI rendering by state
   return (
     <div
-      className={`flex flex-col items-center w-full mx-auto min-h-[60vh] ${isIdle ? "flex-grow justify-center" : "pt-8"}`}
+      className={`flex flex-col items-center w-full mx-auto min-h-[60vh] ${isIdle ? "grow justify-center" : "pt-8"}`}
       style={isIdle ? { minHeight: "60vh" } : {}}
     >
       {/* Hero Section */}

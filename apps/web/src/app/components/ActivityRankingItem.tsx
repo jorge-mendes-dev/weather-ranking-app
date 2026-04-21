@@ -18,7 +18,7 @@ export function ActivityRankingItem({
 }: Props) {
   const { t } = require("react-i18next");
   return (
-    <li className="flex items-center gap-5 bg-white/95 border border-border rounded-xl p-5 font-display transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:-translate-y-1 hover:scale-[1.015] focus:shadow-xl focus:border-blue-400">
+    <li className="flex items-center gap-5 bg-white/95 border border-border rounded-xl p-5 font-display emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein">
       <span className="text-blue-600 font-bold min-w-7 text-lg drop-shadow-sm">
         {index + 1}
       </span>

@@ -50,7 +50,7 @@ export function ActivityItem({
 
   return (
     <div
-      className={`group flex flex-col gap-0 px-0 py-0 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-400/60 outline-none cursor-pointer select-none ${expanded ? "bg-blue-50/30 ring-2 ring-blue-100" : ""}`}
+      className={`group flex flex-col gap-0 px-0 py-0 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-400/60 outline-none cursor-pointer select-none emil-fadein emil-spring ${expanded ? "bg-blue-50/30 ring-2 ring-blue-100" : ""}`}
       tabIndex={0}
       aria-label={activity}
       aria-expanded={expanded}

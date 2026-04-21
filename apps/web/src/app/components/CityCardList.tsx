@@ -33,9 +33,9 @@ export function CityCardList({
         return (
           <button
             key={`${city.name}-${city.latitude}-${city.longitude}`}
-            className={`group w-full text-left bg-white/95 border border-gray-300 rounded-xl px-7 py-5 flex items-center justify-between shadow-[0_2px_16px_0_rgba(27,97,201,0.07)] transition-all duration-300 cursor-pointer
-              ${isSelected ? "border-green-600 bg-green-50/80 ring-2 ring-green-200 shadow-md" : "border-gray-300 hover:shadow-[0_8px_32px_0_rgba(27,97,201,0.13)] hover:bg-blue-50/30 hover:border-blue-400 focus:ring-2 focus:ring-blue-200"}
-              ${loading ? "opacity-60 pointer-events-none" : ""}`}
+            className={`group w-full text-left bg-white/95 border border-gray-300 rounded-xl px-7 py-5 flex items-center justify-between emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein cursor-pointer
+                  ${isSelected ? "border-blue-600 bg-blue-50/80 ring-2 ring-blue-200 shadow-md" : "border-gray-300"}
+                  ${loading ? "opacity-60 pointer-events-none" : ""}`}
             onClick={() => onSelect(city)}
             disabled={loading}
             tabIndex={0}

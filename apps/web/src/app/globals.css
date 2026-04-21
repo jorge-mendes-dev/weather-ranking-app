@@ -105,21 +105,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* .button, button, .pill {
-  border-radius: var(--radius-pill);
-  background: var(--color-brand);
-  color: var(--color-bg);
-  font-weight: 600;
-  padding: 0.5em 1.5em;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-} */
-
-/* .button:hover, button:hover, .pill:hover {
-  background: linear-gradient(120deg, var(--color-brand-light) 0%, #fff 100%);
-} */
-
 input, textarea, select {
   border-radius: var(--radius-card);
   border: 1px solid var(--gray-200);
