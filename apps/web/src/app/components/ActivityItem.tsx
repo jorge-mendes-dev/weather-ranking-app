@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { getScoreColor } from "../utils/scoreColor";
 import { ReasoningStatStrip } from "./ReasoningStatStrip";
 import { SearchIcon } from "./SearchIcon";
 
@@ -33,12 +34,7 @@ export function ActivityItem({
 }: ActivityItemProps) {
   const { t } = useTranslation();
 
-  // Color logic using theme tokens
-  const getScoreColor = (score: number) => {
-    if (score >= 7) return "text-blue-600 bg-blue-50"; // High
-    if (score >= 4) return "text-yellow-700 bg-yellow-50"; // Medium
-    return "text-gray-400 bg-gray-100"; // Low
-  };
+  // Color logic moved to utils/scoreColor
 
   const [expanded, setExpanded] = useState(false);
 

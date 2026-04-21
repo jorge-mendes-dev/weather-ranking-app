@@ -7,18 +7,21 @@ import { HeroSection } from "../components/HeroSection";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { SearchBar } from "../components/SearchBar";
 
+import type { City } from "@weather-app/types";
+import type { ProcessedForecast } from "../utils/processForecast";
+
 interface HomeContentProps {
   appState: string;
   isIdle: boolean;
   mounted: boolean;
-  searchResults: any[];
+  searchResults: City[];
   searchError: string | null;
   searchLoading: boolean;
-  selectedCity: any;
-  forecast: any;
+  selectedCity: City | null;
+  forecast: ProcessedForecast | null;
   forecastError: string | null;
   handleSearch: (query: string) => void;
-  handleSelectCity: (city: any) => void;
+  handleSelectCity: (city: City) => void;
 }
 
 export function HomeContent({

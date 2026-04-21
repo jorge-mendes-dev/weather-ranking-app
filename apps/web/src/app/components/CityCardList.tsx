@@ -4,6 +4,9 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import type { City } from "@weather-app/types";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Props for CityCardList component.
+ */
 interface CityCardListProps {
   cities: City[];
   onSelect: (city: City) => void;
@@ -15,12 +18,18 @@ interface CityCardListProps {
  * Renders a list of city cards for selection.
  * @param {CityCardListProps} props - The props for the component.
  */
-export function CityCardList({
+import React from "react";
+
+/**
+ * Renders a list of city cards for selection.
+ * @param props - The props for the component.
+ */
+const CityCardListComponent = ({
   cities,
   onSelect,
   selectedCity,
   loading,
-}: CityCardListProps) {
+}: CityCardListProps) => {
   const { t } = useTranslation();
   if (!cities.length) return null;
   return (
@@ -34,8 +43,9 @@ export function CityCardList({
           <button
             key={`${city.name}-${city.latitude}-${city.longitude}`}
             className={`group w-full text-left bg-white/95 border border-gray-300 rounded-xl px-7 py-5 flex items-center justify-between emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein cursor-pointer
-                  ${isSelected ? "border-blue-600 bg-blue-50/80 ring-2 ring-blue-200 shadow-md" : "border-gray-300"}
-                  ${loading ? "opacity-60 pointer-events-none" : ""}`}
+                   ${isSelected ? "border-blue-600 bg-blue-50/80 ring-2 ring-blue-200 shadow-md" : "border-gray-300"}
+                   ${loading ? "opacity-60 pointer-events-none" : ""}
+                   transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/70 focus:ring-offset-2 hover:scale-[1.01] active:scale-[0.98]`}
             onClick={() => onSelect(city)}
             disabled={loading}
             tabIndex={0}
@@ -43,6 +53,7 @@ export function CityCardList({
               name: city.name,
               country: city.country,
             })}
+            aria-pressed={isSelected ? true : false}
             style={{
               transitionProperty:
                 "box-shadow, background, border-color, transform",
@@ -66,4 +77,6 @@ export function CityCardList({
       })}
     </div>
   );
-}
+};
+
+export const CityCardList = React.memo(CityCardListComponent);

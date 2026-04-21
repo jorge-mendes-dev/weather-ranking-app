@@ -7,7 +7,9 @@
   },
   "searchbar": {
     "button": "Search",
-    "aria_label": "Search"
+    "aria_label": "Search",
+    "clear_button": "Clear",
+    "clear_aria_label": "Clear search"
   },
   "error_boundary": {
     "something_went_wrong": "Something went wrong."
