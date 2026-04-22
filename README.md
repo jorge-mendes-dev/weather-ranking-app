@@ -2,6 +2,10 @@
 
 A monorepo application that ranks sport activities (surfing, skiing, hiking, cycling, running) based on current weather conditions.
 
+## Production Deployment
+
+- [Production App](https://weather-ranking.jorgemendes.com.br/)
+
 ## Apps & Packages
 
 | Workspace | Path | Description |
