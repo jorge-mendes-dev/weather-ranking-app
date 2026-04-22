@@ -4,6 +4,39 @@ Next.js 15 frontend for ranking activities by weather, powered by a GraphQL API.
 
 ---
 
+## 🧭 App Flow
+
+The app guides users from searching for a city to discovering the best activities for each day, using a clear, interactive flow:
+
+1. **Search:** User enters a city name in the SearchBar.
+2. **Select:** CityCardList displays matching cities; user selects one.
+3. **Fetch:** The app fetches a 7-day weather forecast for the selected city.
+4. **View:** ForecastView shows:
+    - **BestToday** and **BestDay**: Instantly highlight the top activity for today and the best day of the week.
+    - **DayCard**: Ranks activities for each day based on weather.
+    - **Reasoning/Stats**: Users can view why an activity is ranked best.
+5. **Repeat:** User can search again or select a new city at any time.
+
+### App Flow Diagram
+
+```mermaid
+flowchart TD
+    A[User enters city in SearchBar] --> B[CityCardList displays search results]
+    B -->|User selects city| C[App fetches 7-day forecast]
+    C --> D[ForecastView displays]
+    D --> E[BestToday & BestDay highlight top activities]
+    D --> F[DayCard shows daily activity rankings]
+    E --> G[User can view reasoning/statistics]
+    F --> G
+    G --> H[User can search again or select new city]
+    H --> B
+```
+
+---
+
+![Diagram](src/assets/app_flow.png)
+
+
 ## 🚀 Features
 
 - **City Search:** Find cities worldwide and get tailored activity recommendations.
@@ -23,11 +56,11 @@ Below are screenshots of the main UI assets:
 ### Home
 ![Home](src/assets/home.png)
 
-### Results
-![Results](src/assets/results.png)
-
 ### Search
 ![Search](src/assets/search.jpeg)
+
+### Results
+![Results](src/assets/results.png)
 
 ---
 
