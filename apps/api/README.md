@@ -277,3 +277,39 @@ All errors are returned in standard GraphQL error format. Example:
 - All inputs are validated. Invalid coordinates or missing fields will return a validation error.
 - The API is read-only and does not require authentication.
 - For more schema details, use the GraphQL playground at `/graphql` after starting the server.
+
+## API Flow Diagram
+
+Below is a high-level overview of the API request/response flow:
+
+```mermaid
+graph TD
+  Client[Client (GraphQL Playground/HTTP)]
+  Gateway[NestJS App (Apollo Server)]
+  Resolver[GraphQL Resolver]
+  Service[NestJS Service Layer]
+  WeatherAPI[External Weather API]
+  Ranking[Ranking Logic]
+  DB[(Database?)]
+
+  Client-->|GraphQL Query|Gateway
+  Gateway-->|Parse & Route|Resolver
+  Resolver-->|Call|Service
+  Service-->|Fetch Weather|WeatherAPI
+  Service-->|Compute Rankings|Ranking
+  Service-->|(Optional: DB Access)|DB
+  Service-->|Return Data|Resolver
+  Resolver-->|GraphQL Response|Gateway
+  Gateway-->|Response|Client
+
+  classDef ext fill:#f9f,stroke:#333,stroke-width:2px;
+  class WeatherAPI ext;
+```
+
+**Flow Explanation:**
+- The client sends a GraphQL query to the NestJS API (Apollo Server).
+- The request is routed to the appropriate GraphQL resolver.
+- The resolver calls the relevant service(s).
+- The service fetches weather data from an external API, computes activity rankings, and (optionally) accesses a database.
+- The service returns the result to the resolver, which formats the GraphQL response.
+- The response is sent back to the client.
