@@ -23,7 +23,7 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@weather-app/types": [
-        "../../packages/types/dist/index.d.ts"
+        "../../packages/types/src/index.ts"
       ]
     }
   }
