@@ -16,4 +16,18 @@ export class DailyWeatherConditionResult {
 
   @Field(() => Float, { description: 'Max UV index' })
   uvIndex: number;
+
+  constructor(
+    day: string,
+    temperature: number,
+    windSpeed: number,
+    precipitation: number,
+    uvIndex: number,
+  ) {
+    this.day = day;
+    this.temperature = temperature;
+    this.windSpeed = windSpeed;
+    this.precipitation = precipitation;
+    this.uvIndex = uvIndex;
+  }
 }

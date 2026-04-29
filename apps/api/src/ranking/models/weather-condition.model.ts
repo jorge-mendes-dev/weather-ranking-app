@@ -13,4 +13,16 @@ export class WeatherConditionResult {
 
   @Field(() => Float, { description: 'UV index' })
   uvIndex: number;
+
+  constructor(
+    temperature: number,
+    windSpeed: number,
+    precipitation: number,
+    uvIndex: number,
+  ) {
+    this.temperature = temperature;
+    this.windSpeed = windSpeed;
+    this.precipitation = precipitation;
+    this.uvIndex = uvIndex;
+  }
 }

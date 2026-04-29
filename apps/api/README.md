@@ -284,13 +284,13 @@ Below is a high-level overview of the API request/response flow:
 
 ```mermaid
 graph TD
-  Client[Client (GraphQL Playground/HTTP)]
-  Gateway[NestJS App (Apollo Server)]
-  Resolver[GraphQL Resolver]
-  Service[NestJS Service Layer]
-  WeatherAPI[External Weather API]
-  Ranking[Ranking Logic]
-  DB[(Database?)]
+  Client["Client (GraphQL Playground/HTTP)"]
+  Gateway["NestJS App (Apollo Server)"]
+  Resolver["GraphQL Resolver"]
+  Service["NestJS Service Layer"]
+  WeatherAPI["External Weather API"]
+  Ranking["Ranking Logic"]
+  DB["Database?"]
 
   Client-->|GraphQL Query|Gateway
   Gateway-->|Parse & Route|Resolver

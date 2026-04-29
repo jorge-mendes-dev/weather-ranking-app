@@ -14,4 +14,16 @@ export class ActivityRankingResult {
 
   @Field(() => WeatherConditionResult)
   conditions: WeatherConditionResult;
+
+  constructor(
+    day: string,
+    activity: string,
+    score: number,
+    conditions: WeatherConditionResult,
+  ) {
+    this.day = day;
+    this.activity = activity;
+    this.score = score;
+    this.conditions = conditions;
+  }
 }
