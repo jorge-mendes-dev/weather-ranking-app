@@ -34,9 +34,6 @@ flowchart TD
 
 ---
 
-![Diagram](src/assets/app_flow.png)
-
-
 ## 🚀 Features
 
 - **City Search:** Find cities worldwide and get tailored activity recommendations.

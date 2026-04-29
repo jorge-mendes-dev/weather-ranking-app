@@ -1,6 +1,13 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { ActivityItem } from "../components/ActivityItem";
 
+// Mock react-i18next
+jest.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key, opts) => (opts?.score ? `${opts.score}/10` : key),
+  }),
+}));
+
 describe("ActivityItem", () => {
   it("renders activity, score, and reasoning", () => {
     render(

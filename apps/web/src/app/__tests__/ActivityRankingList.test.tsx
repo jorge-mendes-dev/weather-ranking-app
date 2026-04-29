@@ -1,6 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import type { Ranking } from "@weather-app/types";
+import { Ranking } from "@weather-app/types";
 import { ActivityRankingList } from "../components/ActivityRankingList";
+
+// Mock react-i18next
+jest.mock("react-i18next", () => ({
+  useTranslation: () => ({ t: (key, opts) => key }),
+}));
 
 describe("ActivityRankingList", () => {
   const rankings: Ranking[] = [

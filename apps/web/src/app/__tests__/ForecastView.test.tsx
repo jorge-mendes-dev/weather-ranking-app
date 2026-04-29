@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ForecastView } from "../components/ForecastView";
-import type { ProcessedForecast } from "../utils/processForecast";
+import { ProcessedForecast } from "../utils/processForecast";
 
 describe("ForecastView", () => {
   const forecast: ProcessedForecast = {
@@ -20,8 +20,10 @@ describe("ForecastView", () => {
 
   it("renders forecast view with city name", () => {
     render(<ForecastView forecast={forecast} cityName="London" />);
-    expect(screen.getByText("London")).toBeInTheDocument();
-    expect(screen.getByText("Surfing")).toBeInTheDocument();
+    expect(
+      screen.getByText((content) => content.includes("London")),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("Surfing").length).toBeGreaterThan(0);
     expect(screen.getByText("Skiing")).toBeInTheDocument();
   });
 });

@@ -10,13 +10,15 @@ interface Props {
  * Renders a single activity ranking item in a list.
  * @param {Props} props - The props for the component.
  */
+import { useTranslation } from "react-i18next";
+
 export function ActivityRankingItem({
   ranking,
   index,
   emojiMap,
   scoreColor,
 }: Props) {
-  const { t } = require("react-i18next");
+  const { t } = useTranslation();
   return (
     <li className="flex items-center gap-5 bg-white/95 border border-border rounded-xl p-5 font-display emil-shadow-card emil-shadow-card-hover emil-spring emil-fadein">
       <span className="text-blue-600 font-bold min-w-7 text-lg drop-shadow-sm">
