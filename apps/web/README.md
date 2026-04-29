@@ -184,3 +184,32 @@ For bugs, feature requests, or questions, open an issue or contact the maintaine
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+
+## 💻 Frontend Improvements
+
+### Testing Strategy
+- Fix test setup issues (`@testing-library/react`)
+- Add unit tests for components and hooks
+- Introduce integration tests with mocked GraphQL responses
+
+### Architecture & Maintainability
+- Introduce a data-fetching layer (e.g., React Query or Apollo Client cache)
+- Improve separation between UI and data logic
+- Evolve folder structure for scalability
+
+### User Experience
+- Add loading states (skeletons/spinners)
+- Improve error feedback
+- Enhance input validation UX
+
+### Performance
+- Reduce unnecessary re-renders
+- Apply memoization where appropriate
+- Improve async handling (debounce, request cancellation)
+
+### Internationalization
+- Expand translation coverage
+- Lazy-load translations
+- Add fallback strategies
+- Support server-side translations where applicable

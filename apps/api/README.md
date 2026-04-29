@@ -306,6 +306,8 @@ graph TD
   class WeatherAPI ext;
 ```
 
+---
+
 **Flow Explanation:**
 - The client sends a GraphQL query to the NestJS API (Apollo Server).
 - The request is routed to the appropriate GraphQL resolver.
@@ -313,3 +315,25 @@ graph TD
 - The service fetches weather data from an external API, computes activity rankings, and (optionally) accesses a database.
 - The service returns the result to the resolver, which formats the GraphQL response.
 - The response is sent back to the client.
+
+## 🔧 Backend Improvements
+
+### Testing & Reliability
+- Stabilize unit tests by properly mocking external dependencies
+- Expand E2E coverage to validate full request flow (GraphQL → service → external API)
+- Introduce CI pipeline to enforce test reliability
+
+### Architecture & Consistency
+- Standardize input validation using DTOs and `class-validator`
+- Extract external API logic into a dedicated provider
+- Introduce a domain layer to better separate business logic from infrastructure
+
+### Performance & Scalability
+- Add caching layer (e.g., Redis) to reduce external API calls
+- Implement rate limiting to protect the API and upstream services
+- Optimize resolver execution to avoid redundant calls
+
+### Observability
+- Introduce structured logging (e.g., Pino)
+- Add error tracking (e.g., Sentry)
+- Improve error handling and standardization
