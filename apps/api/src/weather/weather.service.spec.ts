@@ -1,8 +1,18 @@
 import { HttpService } from '@nestjs/axios';
+import { Logger } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AxiosHeaders, AxiosResponse } from 'axios';
 import { of } from 'rxjs';
 import { WeatherService } from './weather.service';
+
+beforeAll(() => {
+  jest.spyOn(Logger.prototype, 'error').mockImplementation(() => {});
+  jest.spyOn(Logger.prototype, 'warn').mockImplementation(() => {});
+  jest.spyOn(Logger.prototype, 'log').mockImplementation(() => {});
+});
+afterAll(() => {
+  jest.restoreAllMocks();
+});
 
 describe('WeatherService', () => {
   let service: WeatherService;
@@ -71,7 +81,15 @@ describe('WeatherService', () => {
   it('should return 7-day weather conditions for valid response', async () => {
     const mockData = {
       daily: {
-        time: ['2026-04-19', '2026-04-20', '2026-04-21', '2026-04-22', '2026-04-23', '2026-04-24', '2026-04-25'],
+        time: [
+          '2026-04-19',
+          '2026-04-20',
+          '2026-04-21',
+          '2026-04-22',
+          '2026-04-23',
+          '2026-04-24',
+          '2026-04-25',
+        ],
         temperature_2m_max: [20, 21, 22, 23, 24, 25, 26],
         temperature_2m_min: [10, 11, 12, 13, 14, 15, 16],
         wind_speed_10m_max: [5, 6, 7, 8, 9, 10, 11],
