@@ -213,3 +213,9 @@ This project is licensed under the MIT License.
 - Lazy-load translations
 - Add fallback strategies
 - Support server-side translations where applicable
+
+## 📚 Further Reading
+
+- [Frontend README](apps/web/README.md)
+- [Backend README](apps/api/README.md)
+- [Shared Types](packages/types/src/index.ts)

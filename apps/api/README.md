@@ -297,7 +297,7 @@ graph TD
   Resolver-->|Call|Service
   Service-->|Fetch Weather|WeatherAPI
   Service-->|Compute Rankings|Ranking
-  Service-->|(Optional: DB Access)|DB
+  Service-->|Optional: DB Access|DB
   Service-->|Return Data|Resolver
   Resolver-->|GraphQL Response|Gateway
   Gateway-->|Response|Client
@@ -337,3 +337,9 @@ graph TD
 - Introduce structured logging (e.g., Pino)
 - Add error tracking (e.g., Sentry)
 - Improve error handling and standardization
+
+## 📚 Further Reading
+
+- [Frontend README](apps/web/README.md)
+- [Backend README](apps/api/README.md)
+- [Shared Types](packages/types/src/index.ts)
