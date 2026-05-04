@@ -1,4 +1,5 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
@@ -13,6 +14,7 @@ import { WeatherModule } from './weather/weather.module';
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
+    CacheModule.register({ isGlobal: true }),
     WeatherModule,
     CityModule,
     RankingModule,
